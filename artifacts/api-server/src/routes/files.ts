@@ -1,8 +1,9 @@
 import { Router } from "express";
 import multer from "multer";
 import { pool } from "../lib/db.js";
-import { uploadFile, deleteFile } from "../lib/storage.js";
+import { saveFile, removeFile } from "../lib/storage.js";
 import { requireAdmin } from "../lib/auth.js";
+import path from "node:path";
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 100 * 1024 * 1024 } });
@@ -25,17 +26,12 @@ router.post("/download/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const { rows } = await pool.query(
-      `SELECT * FROM ${TABLE} WHERE id = $1`,
-      [id]
+      `SELECT * FROM ${TABLE} WHERE id = $1`, [id]
     );
     const file = rows[0];
-    if (!file) {
-      res.status(404).json({ error: "File not found" });
-      return;
-    }
+    if (!file) { res.status(404).json({ error: "File not found" }); return; }
     await pool.query(
-      `UPDATE ${TABLE} SET download_count = download_count + 1 WHERE id = $1`,
-      [id]
+      `UPDATE ${TABLE} SET download_count = download_count + 1 WHERE id = $1`, [id]
     );
     res.json({ file_url: file.file_url });
   } catch (err) {
@@ -46,10 +42,7 @@ router.post("/download/:id", async (req, res) => {
 
 router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
   const file = req.file;
-  if (!file) {
-    res.status(400).json({ error: "No file uploaded" });
-    return;
-  }
+  if (!file) { res.status(400).json({ error: "No file uploaded" }); return; }
 
   const { title, description, featured } = req.body as {
     title?: string;
@@ -57,17 +50,14 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
     featured?: string;
   };
 
-  if (!title) {
-    res.status(400).json({ error: "Title is required" });
-    return;
-  }
+  if (!title) { res.status(400).json({ error: "Title is required" }); return; }
 
-  const ext = file.originalname.split(".").pop() ?? "bin";
-  const fileName = `portfolio/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const ext = path.extname(file.originalname).replace(".", "") || "bin";
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
   const mimeToType = (mime: string, ext: string): string => {
     if (mime === "application/pdf") return "pdf";
-    if (mime.includes("word") || mime.includes("officedocument.wordprocessingml") || ext === "doc" || ext === "docx") return "doc";
+    if (mime.includes("word") || mime.includes("officedocument.wordprocessingml") || ["doc", "docx"].includes(ext)) return "doc";
     if (mime.includes("sheet") || mime.includes("excel") || mime.includes("spreadsheet") || ["xls", "xlsx", "csv"].includes(ext)) return "spreadsheet";
     if (mime.includes("presentation") || mime.includes("powerpoint") || ["ppt", "pptx"].includes(ext)) return "presentation";
     if (mime.startsWith("image/")) return "image";
@@ -79,10 +69,10 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
 
   let fileUrl: string;
   try {
-    fileUrl = await uploadFile(fileName, file.buffer, file.mimetype);
+    fileUrl = await saveFile(fileName, file.buffer);
   } catch (err) {
     req.log.error(err);
-    res.status(500).json({ error: "Failed to upload file to storage" });
+    res.status(500).json({ error: "Failed to save file" });
     return;
   }
 
@@ -95,7 +85,7 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
     res.status(201).json(rows[0]);
   } catch (err) {
     req.log.error(err);
-    await deleteFile(fileName);
+    await removeFile(fileName);
     res.status(500).json({ error: "Failed to save file metadata" });
   }
 });
@@ -103,11 +93,8 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
 router.patch("/:id", requireAdmin, async (req, res) => {
   const { id } = req.params;
   const { title, description, featured } = req.body as {
-    title?: string;
-    description?: string;
-    featured?: boolean;
+    title?: string; description?: string; featured?: boolean;
   };
-
   try {
     const fields: string[] = [];
     const values: unknown[] = [];
@@ -133,15 +120,13 @@ router.delete("/:id", requireAdmin, async (req, res) => {
   const { id } = req.params;
   try {
     const { rows } = await pool.query(
-      `SELECT file_url FROM ${TABLE} WHERE id = $1`,
-      [id]
+      `SELECT file_url FROM ${TABLE} WHERE id = $1`, [id]
     );
     const file = rows[0];
     if (!file) { res.status(404).json({ error: "File not found" }); return; }
 
-    const url = new URL(file.file_url);
-    const pathParts = url.pathname.split("/").slice(2).join("/");
-    if (pathParts) await deleteFile(pathParts);
+    const fileName = file.file_url.split("/api/uploads/")[1];
+    if (fileName) await removeFile(fileName);
 
     await pool.query(`DELETE FROM ${TABLE} WHERE id = $1`, [id]);
     res.json({ success: true });

@@ -1,31 +1,29 @@
-import { Storage } from "@google-cloud/storage";
+import { writeFile, unlink } from "node:fs/promises";
+import { existsSync, mkdirSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const bucketId = process.env.DEFAULT_OBJECT_STORAGE_BUCKET_ID;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const UPLOADS_DIR = path.resolve(__dirname, "../../uploads");
 
-if (!bucketId) {
-  throw new Error("DEFAULT_OBJECT_STORAGE_BUCKET_ID environment variable is required");
+if (!existsSync(UPLOADS_DIR)) {
+  mkdirSync(UPLOADS_DIR, { recursive: true });
 }
 
-const storageClient = new Storage();
-const bucket = storageClient.bucket(bucketId);
-
-export async function uploadFile(
-  fileName: string,
-  buffer: Buffer,
-  contentType: string,
-): Promise<string> {
-  const file = bucket.file(fileName);
-  await file.save(buffer, {
-    contentType,
-    metadata: { cacheControl: "public, max-age=31536000" },
-  });
-  await file.makePublic();
-  return `https://storage.googleapis.com/${bucketId}/${fileName}`;
+export function getUploadsDir(): string {
+  return UPLOADS_DIR;
 }
 
-export async function deleteFile(fileName: string): Promise<void> {
+export async function saveFile(fileName: string, buffer: Buffer): Promise<string> {
+  const dest = path.join(UPLOADS_DIR, fileName);
+  await writeFile(dest, buffer);
+  return `/api/uploads/${fileName}`;
+}
+
+export async function removeFile(fileName: string): Promise<void> {
   try {
-    await bucket.file(fileName).delete();
+    const dest = path.join(UPLOADS_DIR, fileName);
+    await unlink(dest);
   } catch {
     // Ignore if file doesn't exist
   }
