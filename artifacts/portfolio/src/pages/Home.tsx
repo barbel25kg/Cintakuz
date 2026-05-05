@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { fetchFiles, trackDownload, type PortfolioFile } from "@/lib/api";
 import { useState } from "react";
+import azizahPhoto from "@/assets/azizah-photo.jpg";
 import {
   FileText, Image, Download, Eye, Star, ChevronRight,
   FolderOpen, BarChart3, BookOpen, Search, MessageSquare, X,
@@ -301,84 +302,108 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-zinc-950 to-zinc-950" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,_#ffffff08_1px,_transparent_1px),_linear-gradient(to_bottom,_#ffffff08_1px,_transparent_1px)] bg-[size:64px_64px]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-4 py-1.5 mb-8">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm text-violet-300 font-mono">Tersedia untuk pekerjaan baru</span>
-            </div>
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent mb-4">
-              Azizah Khairunnisa
-            </h1>
-
-            <p className="text-xl md:text-2xl text-zinc-400 font-mono mb-6">
-              Human Resources <span className="text-violet-400">&</span> Administration Enthusiast
-            </p>
-
-            <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Lulusan S1 Psikologi dengan ketertarikan pada bidang Human Resources dan administrasi.
-              Berpengalaman dalam pengelolaan data, administrasi sekretariat, pelatihan, serta koordinasi
-              kegiatan berbasis tim. Detail-oriented, adaptif, dan berkomitmen memberikan hasil kerja yang
-              rapi, efisien, dan profesional.
-            </p>
-
-            {/* Contact info */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-10 text-sm text-zinc-500">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-violet-400" />
-                Banjarmasin Utara, Kalimantan Selatan
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-violet-400" />
-                azhkrn@gmail.com
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-violet-400" />
-                +62 896 0448 8288
-              </span>
-            </div>
-
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <button
-                onClick={scrollToPortfolio}
-                className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25"
-              >
-                Lihat Portfolio
-                <ChevronRight className="w-4 h-4" />
-              </button>
-              <a
-                href="#experience"
-                className="flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors"
-              >
-                Pengalaman Saya
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-20 grid grid-cols-4 gap-6 max-w-lg mx-auto"
-          >
-            {[
-              { value: "3.59", label: "IPK" },
-              { value: "10+", label: "Peserta Dilatih" },
-              { value: "PKM", label: "Lolos Nasional" },
-              { value: "2025", label: "Lulus" },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-2xl font-bold text-white">{s.value}</div>
-                <div className="text-xs text-zinc-500 mt-1">{s.label}</div>
+            {/* Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              className="shrink-0"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-600/20 blur-2xl scale-110" />
+                <div className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-violet-500/30 shadow-2xl shadow-violet-900/40">
+                  <img
+                    src={azizahPhoto}
+                    alt="Azizah Khairunnisa"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-zinc-900 border border-zinc-700 rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-xs text-zinc-300 font-mono whitespace-nowrap">Open to work</span>
+                </div>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+
+            {/* Text content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex-1 text-center lg:text-left"
+            >
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent mb-3">
+                Azizah Khairunnisa
+              </h1>
+
+              <p className="text-lg md:text-xl text-zinc-400 font-mono mb-5">
+                Human Resources <span className="text-violet-400">&</span> Administration Enthusiast
+              </p>
+
+              <p className="text-base text-zinc-500 max-w-xl mb-6 leading-relaxed">
+                Lulusan S1 Psikologi dengan ketertarikan pada bidang Human Resources dan administrasi.
+                Berpengalaman dalam pengelolaan data, administrasi sekretariat, pelatihan, serta koordinasi
+                kegiatan berbasis tim. Detail-oriented, adaptif, dan berkomitmen memberikan hasil kerja yang
+                rapi, efisien, dan profesional.
+              </p>
+
+              {/* Contact info */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 text-sm text-zinc-500">
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-violet-400" />
+                  Banjarmasin Utara, Kalimantan Selatan
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-violet-400" />
+                  azhkrn@gmail.com
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-violet-400" />
+                  +62 896 0448 8288
+                </span>
+              </div>
+
+              <div className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+                <button
+                  onClick={scrollToPortfolio}
+                  className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25"
+                >
+                  Lihat Portfolio
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <a
+                  href="#experience"
+                  className="flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors"
+                >
+                  Pengalaman Saya
+                </a>
+              </div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-10 grid grid-cols-4 gap-4 max-w-sm mx-auto lg:mx-0"
+              >
+                {[
+                  { value: "3.59", label: "IPK" },
+                  { value: "10+", label: "Peserta" },
+                  { value: "PKM", label: "Nasional" },
+                  { value: "2025", label: "Lulus" },
+                ].map((s) => (
+                  <div key={s.label} className="text-center">
+                    <div className="text-xl font-bold text-white">{s.value}</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+          </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
