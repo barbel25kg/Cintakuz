@@ -1,82 +1,84 @@
-# Portfolio Web App
+# Azizah Khairunnisa — Portfolio App
 
 ## Overview
+A personal portfolio website for Azizah Khairunnisa with an admin dashboard for managing uploaded files (PDFs, images, documents, etc.).
 
-A modern dark-mode portfolio web app with admin-only authentication, Supabase file storage, and public portfolio viewing. Built as a pnpm monorepo with React + Vite (frontend) and Express (backend API).
+## Architecture
 
-## Stack
+### Artifacts
+| Artifact | Path | Description |
+|---|---|---|
+| `artifacts/portfolio` | `/` | React + Vite frontend (portfolio + admin UI) |
+| `artifacts/api-server` | `/api` | Express + TypeScript REST API |
+| `artifacts/mockup-sandbox` | `/__mockup` | Design sandbox (Replit internal) |
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **Frontend**: React 18 + Vite + Tailwind CSS + Framer Motion
-- **API framework**: Express 5
-- **Storage**: Supabase (Storage bucket + PostgreSQL table)
-- **Auth**: JWT (username + password only, no OAuth)
-- **Build**: esbuild (API), Vite (frontend)
+### Tech Stack
+- **Frontend**: React 19, Vite 7, Tailwind CSS v4, TanStack Query, Wouter (routing), Framer Motion
+- **Backend**: Express 5, TypeScript, esbuild (bundler), pino (logging)
+- **Database**: PostgreSQL via `pg` Pool (Replit managed DB)
+- **Auth**: Username/password login → JWT token (stored in localStorage)
+- **Storage**: Local filesystem (`artifacts/api-server/uploads/`)
 
-## Artifacts
+## Key Files
 
-| Artifact | Path | Port |
-|----------|------|------|
-| Portfolio (frontend) | `/` | 21113 |
-| API Server (backend) | `/api` | 8080 |
+### Frontend (`artifacts/portfolio/src/`)
+- `App.tsx` — Router: `/` Home, `/admin` Login, `/admin/dashboard` Dashboard
+- `pages/Home.tsx` — Public portfolio page
+- `pages/AdminLogin.tsx` — Username/password login form
+- `pages/AdminDashboard.tsx` — File upload/manage UI
+- `lib/api.ts` — All API calls (BASE = `/api`)
 
-## Key Features
+### Backend (`artifacts/api-server/src/`)
+- `app.ts` — Express app, CORS, static uploads at `/api/uploads/`
+- `lib/auth.ts` — JWT sign/verify, `requireAdmin` middleware
+- `lib/db.ts` — pg Pool connection
+- `lib/storage.ts` — Local file save/delete
+- `routes/auth.ts` — `POST /api/auth/login`
+- `routes/files.ts` — CRUD for portfolio_files table
 
-- **Landing Page**: Hero, Skills bento grid, Featured Project, Portfolio file grid
-- **Public Portfolio**: Browse, preview, download files (PDF, DOC, images) with download counter
-- **Admin Panel** (`/admin`): Login with username+password → upload files, edit titles/descriptions, toggle featured, delete
-- **Auth**: JWT tokens stored in localStorage, 24h expiry, verified on all admin API routes
-
-## Environment Variables / Secrets
-
-| Key | Description |
-|-----|-------------|
-| `SUPABASE_URL` | Project URL: `https://xxxx.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | Service role key from Supabase Settings → API |
-| `ADMIN_USERNAME` | Admin login username |
-| `ADMIN_PASSWORD` | Admin login password |
-| `SESSION_SECRET` | Secret for JWT signing |
-
-## Supabase Setup (one-time)
-
-Run this SQL in Supabase SQL Editor (https://supabase.com/dashboard/project/bdydpbwlvmllgutcovgb/sql/new):
+## Database Schema
 
 ```sql
-CREATE TABLE IF NOT EXISTS portfolio_files (
-  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-  title text NOT NULL,
-  description text DEFAULT '',
-  file_url text NOT NULL,
-  file_type text NOT NULL DEFAULT 'other',
-  featured boolean DEFAULT false,
-  download_count integer DEFAULT 0,
-  created_at timestamptz DEFAULT now()
+CREATE TABLE portfolio_files (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title VARCHAR(255) NOT NULL,
+  description TEXT DEFAULT '',
+  file_url TEXT NOT NULL,
+  file_type VARCHAR(50) NOT NULL DEFAULT 'other',
+  featured BOOLEAN DEFAULT false,
+  download_count INTEGER DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 ```
 
-The `portfolio-files` storage bucket is already created (public, 50MB limit).
+## API Endpoints
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| POST | `/api/auth/login` | — | Login, returns JWT |
+| GET | `/api/files` | — | List all files |
+| POST | `/api/files` | JWT | Upload file |
+| PATCH | `/api/files/:id` | JWT | Update file metadata |
+| DELETE | `/api/files/:id` | JWT | Delete file |
+| POST | `/api/files/download/:id` | — | Track download, returns file URL |
 
-## Key Commands
+## Required Environment Variables (Secrets)
 
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
-- `pnpm --filter @workspace/portfolio run dev` — run frontend locally
-- `pnpm run typecheck` — full typecheck across all packages
+| Variable | Description |
+|---|---|
+| `ADMIN_USERNAME` | Admin login username |
+| `ADMIN_PASSWORD` | Admin login password |
+| `SESSION_SECRET` | JWT signing secret |
+| `DATABASE_URL` | PostgreSQL connection string |
 
-## File Structure
+See `.env.example` for the full template.
 
-```
-artifacts/
-  api-server/src/
-    lib/auth.ts        — JWT helpers, admin credential check
-    lib/supabase.ts    — Supabase client
-    routes/auth.ts     — POST /api/auth/login
-    routes/files.ts    — GET/POST/PATCH/DELETE /api/files
-  portfolio/src/
-    lib/api.ts         — All API calls + auth helpers
-    pages/Home.tsx     — Landing page (hero, skills, featured, files)
-    pages/AdminLogin.tsx      — /admin login form
-    pages/AdminDashboard.tsx  — /admin/dashboard (upload, edit, delete)
+## Running Locally
+
+```bash
+pnpm install
+# Set env vars in .env (copy from .env.example)
+# Start API server
+cd artifacts/api-server && pnpm dev
+# Start frontend (separate terminal)
+cd artifacts/portfolio && pnpm dev
 ```
