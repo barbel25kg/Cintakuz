@@ -34,8 +34,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/uploads", express.static(getUploadsDir(), {
-  setHeaders(res) {
+  setHeaders(res, filePath) {
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("X-Frame-Options", "ALLOWALL");
+    res.setHeader("Content-Disposition", "inline");
   },
 }));
 

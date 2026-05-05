@@ -78,6 +78,59 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
     a.click();
   };
 
+  const openInNewTab = () => {
+    window.open(file.file_url, "_blank", "noopener,noreferrer");
+  };
+
+  const renderPreview = () => {
+    if (file.file_type === "image") {
+      return (
+        <img
+          src={file.file_url}
+          alt={file.title}
+          className="w-full rounded-lg object-contain max-h-[50vh]"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+      );
+    }
+
+    if (file.file_type === "pdf") {
+      return (
+        <div className="flex flex-col gap-3">
+          <embed
+            src={`${file.file_url}#toolbar=1&navpanes=0`}
+            type="application/pdf"
+            className="w-full rounded-lg border border-zinc-700"
+            style={{ height: "50vh" }}
+          />
+          <button
+            onClick={openInNewTab}
+            className="flex items-center justify-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2.5 px-4 transition-colors"
+          >
+            <Eye className="w-4 h-4" />
+            Open PDF in new tab
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex flex-col items-center justify-center h-48 gap-4 text-zinc-400">
+        <FileText className="w-16 h-16 opacity-40" />
+        <p className="text-sm">Preview not available for this file type</p>
+        <button
+          onClick={openInNewTab}
+          className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2 px-4 transition-colors"
+        >
+          <Eye className="w-4 h-4" />
+          Open in new tab
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
       <motion.div
@@ -102,27 +155,25 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
           </button>
         </div>
         <div className="flex-1 overflow-auto p-6">
-          {file.file_type === "image" ? (
-            <img src={file.file_url} alt={file.title} className="w-full rounded-lg object-contain max-h-[50vh]" />
-          ) : file.file_type === "pdf" ? (
-            <iframe src={file.file_url} className="w-full h-[50vh] rounded-lg border border-zinc-700" title={file.title} />
-          ) : (
-            <div className="flex flex-col items-center justify-center h-48 gap-4 text-zinc-400">
-              <FileText className="w-16 h-16" />
-              <p>Preview not available for this file type</p>
-            </div>
-          )}
+          {renderPreview()}
           {file.description && (
             <p className="mt-4 text-zinc-400 text-sm">{file.description}</p>
           )}
         </div>
-        <div className="p-6 border-t border-zinc-800">
+        <div className="p-6 border-t border-zinc-800 flex gap-3">
+          <button
+            onClick={openInNewTab}
+            className="flex-1 flex items-center justify-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-medium py-3 px-6 rounded-xl transition-colors"
+          >
+            <Eye className="w-4 h-4" />
+            Open
+          </button>
           <button
             onClick={handleDownload}
-            className="w-full flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-medium py-3 px-6 rounded-xl transition-colors"
           >
             <Download className="w-4 h-4" />
-            Download File
+            Download
           </button>
         </div>
       </motion.div>
