@@ -98,3 +98,29 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes blob {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(28px, -48px) scale(1.08); }
+  66%       { transform: translate(-18px, 22px) scale(0.94); }
+}
+
+@keyframes blob2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-32px, 18px) scale(1.06); }
+  66%       { transform: translate(22px, -30px) scale(0.96); }
+}
+
+@keyframes blob3 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(20px, 30px) scale(0.92); }
+  66%       { transform: translate(-24px, -18px) scale(1.1); }
+}
+
+.animate-blob  { animation: blob  14s ease-in-out infinite; }
+.animate-blob2 { animation: blob2 18s ease-in-out infinite; }
+.animate-blob3 { animation: blob3 16s ease-in-out infinite; }
+
+.animation-delay-2s { animation-delay: 2s; }
+.animation-delay-4s { animation-delay: 4s; }
+.animation-delay-6s { animation-delay: 6s; }

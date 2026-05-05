@@ -1,0 +1,103 @@
+Refactor ONLY the visual styling of the website.
+
+DO NOT change layout, content, structure, or functionality.
+
+---
+
+GOAL:
+Transform the current dark theme into a bright, clean, and professional design with a soft blue tone and elegant animated background.
+
+---
+
+LIGHT MODE COLOR THEME:
+
+- Use blue as the main accent color, but keep it balanced and not overwhelming
+- Background should feel slightly blue-dominant but still light and clean
+- Use very light blue tones or soft gradients (light blue → white)
+- Avoid pure white and avoid strong/saturated blue
+
+Balance with:
+- white surfaces (cards, sections)
+- neutral gray text for readability
+
+---
+
+COLOR DETAILS:
+
+- Hero section:
+  - soft gradient (light blue → white)
+- Cards:
+  - white background with subtle shadow
+- Buttons:
+  - blue as primary color
+  - clean and modern style
+- Text:
+  - dark gray for main text
+  - medium gray for secondary text
+
+---
+
+IMPORTANT BALANCE:
+
+- Blue should be noticeable but subtle
+- Do NOT make the entire page fully blue
+- Avoid neon or overly vibrant colors
+- Keep everything soft, calm, and professional
+
+---
+
+BACKGROUND ANIMATION:
+
+Enhance the background with a subtle and elegant animation.
+
+Animation style:
+- slow moving gradient OR
+- blurred floating shapes (blob) OR
+- very subtle light motion
+
+Animation rules:
+- slow
+- smooth
+- low opacity
+- barely noticeable
+
+---
+
+COLOR FOR ANIMATION:
+- use soft blue tones
+- blend naturally with the light background
+- keep it minimal and clean
+
+---
+
+IMPORTANT:
+
+- Animation must NOT distract from content
+- Avoid flashy, sharp, or fast effects
+- Avoid tech-heavy or gaming-style visuals
+
+---
+
+PERFORMANCE:
+- Use lightweight animation (CSS or optimized method)
+- Ensure smooth performance (no lag)
+
+---
+
+STYLE DIRECTION:
+
+- Minimalist
+- Elegant
+- Clean
+- Professional
+- Suitable for Human Resources portfolio
+
+---
+
+FINAL RESULT:
+
+The website should feel:
+- bright and modern
+- slightly blue-toned but balanced
+- visually alive with subtle animation
+- easy to read and comfortable for users
