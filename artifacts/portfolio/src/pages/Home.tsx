@@ -287,18 +287,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-slate-50 to-white text-slate-900 relative">
+    <div className="min-h-screen text-slate-900 relative">
 
-      {/* Animated blob background */}
+      {/* Animated gradient base */}
+      <div
+        className="fixed inset-0 animate-bg-shift pointer-events-none z-0"
+        style={{
+          background: "linear-gradient(135deg, #dbeafe 0%, #eff6ff 25%, #e0f2fe 50%, #dbeafe 75%, #bfdbfe 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Floating orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-        <div className="animate-blob absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-blue-200/20 blur-[100px]" />
-        <div className="animate-blob2 animation-delay-4s absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-sky-200/18 blur-[90px]" />
-        <div className="animate-blob3 animation-delay-2s absolute bottom-0 left-1/4 w-[550px] h-[550px] rounded-full bg-indigo-100/15 blur-[100px]" />
-        <div className="animate-blob animation-delay-6s absolute top-2/3 right-1/4 w-[400px] h-[400px] rounded-full bg-blue-100/20 blur-[80px]" />
+        {/* Large primary orb — top-left */}
+        <div className="animate-orb1 absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-blue-400/20 blur-[120px]" />
+        {/* Mid orb — top-right */}
+        <div className="animate-orb2 animation-delay-4s absolute -top-20 -right-32 w-[550px] h-[550px] rounded-full bg-sky-300/25 blur-[100px]" />
+        {/* Lower-left orb */}
+        <div className="animate-orb3 animation-delay-2s absolute bottom-[-10%] left-[10%] w-[600px] h-[600px] rounded-full bg-blue-300/18 blur-[110px]" />
+        {/* Center-right accent orb */}
+        <div className="animate-orb4 animation-delay-6s absolute top-[45%] right-[5%] w-[450px] h-[450px] rounded-full bg-indigo-300/15 blur-[90px]" />
+        {/* Small bright accent */}
+        <div className="animate-orb2 animation-delay-10s absolute top-[70%] left-[55%] w-[300px] h-[300px] rounded-full bg-cyan-200/20 blur-[70px]" />
       </div>
 
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-blue-100/60 shadow-sm shadow-blue-50">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-blue-50/70 backdrop-blur-lg border-b border-blue-200/50 shadow-sm shadow-blue-200/20">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <span className="font-mono text-sm text-blue-600 font-semibold">azizah.khairunnisa</span>
           <div className="flex items-center gap-5">
@@ -313,8 +328,8 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/80 via-white/60 to-transparent" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,_#3b82f608_1px,_transparent_1px),_linear-gradient(to_bottom,_#3b82f608_1px,_transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-200/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,_#3b82f614_1px,_transparent_1px),_linear-gradient(to_bottom,_#3b82f614_1px,_transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -426,7 +441,7 @@ export default function Home() {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="relative z-10 py-24 px-6 bg-white/60 backdrop-blur-sm">
+      <section id="experience" className="relative z-10 py-24 px-6 bg-white/40 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -482,7 +497,7 @@ export default function Home() {
       </section>
 
       {/* Research & Projects */}
-      <section className="relative z-10 py-24 px-6 bg-blue-50/40 backdrop-blur-sm">
+      <section className="relative z-10 py-24 px-6 bg-blue-100/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -540,7 +555,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="relative z-10 py-24 px-6 bg-white/60 backdrop-blur-sm">
+      <section id="skills" className="relative z-10 py-24 px-6 bg-white/40 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -608,7 +623,7 @@ export default function Home() {
       </section>
 
       {/* Education */}
-      <section className="relative z-10 py-24 px-6 bg-blue-50/40 backdrop-blur-sm">
+      <section className="relative z-10 py-24 px-6 bg-blue-100/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -675,7 +690,7 @@ export default function Home() {
       </section>
 
       {/* Organizations & Committees */}
-      <section className="relative z-10 py-24 px-6 bg-white/60 backdrop-blur-sm">
+      <section className="relative z-10 py-24 px-6 bg-white/40 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -740,7 +755,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Files */}
-      <section id="portfolio" className="relative z-10 py-24 px-6 bg-blue-50/40 backdrop-blur-sm">
+      <section id="portfolio" className="relative z-10 py-24 px-6 bg-blue-100/30 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -894,7 +909,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative z-10 border-t border-blue-100 py-6 px-6 text-center text-slate-400 text-sm bg-white/80 backdrop-blur-sm">
+      <footer className="relative z-10 border-t border-blue-200/50 py-6 px-6 text-center text-slate-500 text-sm bg-blue-50/50 backdrop-blur-md">
         <p>© {new Date().getFullYear()} Azizah Khairunnisa · All rights reserved</p>
       </footer>
 

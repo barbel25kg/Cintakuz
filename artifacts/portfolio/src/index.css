@@ -99,28 +99,51 @@ body {
   }
 }
 
-@keyframes blob {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(28px, -48px) scale(1.08); }
-  66%       { transform: translate(-18px, 22px) scale(0.94); }
+/* ── Floating orb animations ───────────────────────────── */
+@keyframes orb1 {
+  0%   { transform: translate(0px,   0px)   scale(1);    }
+  25%  { transform: translate(60px, -80px)  scale(1.12); }
+  50%  { transform: translate(30px,  50px)  scale(0.92); }
+  75%  { transform: translate(-50px,-30px)  scale(1.06); }
+  100% { transform: translate(0px,   0px)   scale(1);    }
+}
+@keyframes orb2 {
+  0%   { transform: translate(0px,  0px)  scale(1);    }
+  30%  { transform: translate(-70px,40px) scale(1.08); }
+  60%  { transform: translate(40px,-60px) scale(0.95); }
+  100% { transform: translate(0px,  0px)  scale(1);    }
+}
+@keyframes orb3 {
+  0%   { transform: translate(0px,  0px)  scale(1);    }
+  40%  { transform: translate(50px, 70px) scale(0.9);  }
+  70%  { transform: translate(-40px,20px) scale(1.1);  }
+  100% { transform: translate(0px,  0px)  scale(1);    }
 }
 
-@keyframes blob2 {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(-32px, 18px) scale(1.06); }
-  66%       { transform: translate(22px, -30px) scale(0.96); }
+/* ── Slow background gradient shift ───────────────────── */
+@keyframes bgShift {
+  0%,100% { background-position: 0% 0%; }
+  33%     { background-position: 100% 0%; }
+  66%     { background-position: 50% 100%; }
 }
 
-@keyframes blob3 {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(20px, 30px) scale(0.92); }
-  66%       { transform: translate(-24px, -18px) scale(1.1); }
+/* ── Gentle rotate / drift for accent ring ────────────── */
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.animate-blob  { animation: blob  14s ease-in-out infinite; }
-.animate-blob2 { animation: blob2 18s ease-in-out infinite; }
-.animate-blob3 { animation: blob3 16s ease-in-out infinite; }
+.animate-orb1 { animation: orb1 20s ease-in-out infinite; }
+.animate-orb2 { animation: orb2 26s ease-in-out infinite; }
+.animate-orb3 { animation: orb3 22s ease-in-out infinite; }
+.animate-orb4 { animation: orb1 30s ease-in-out infinite reverse; }
+.animate-bg-shift {
+  background-size: 300% 300%;
+  animation: bgShift 25s ease infinite;
+}
+.animate-slow-rotate { animation: slowRotate 40s linear infinite; }
 
-.animation-delay-2s { animation-delay: 2s; }
-.animation-delay-4s { animation-delay: 4s; }
-.animation-delay-6s { animation-delay: 6s; }
+.animation-delay-2s  { animation-delay:  2s; }
+.animation-delay-4s  { animation-delay:  4s; }
+.animation-delay-6s  { animation-delay:  6s; }
+.animation-delay-10s { animation-delay: 10s; }
