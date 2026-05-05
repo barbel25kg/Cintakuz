@@ -1,0 +1,136 @@
+Build a modern portfolio web app with STRICT admin-only authentication (no public signup, no Google login, no OAuth).
+
+TECH STACK:
+- Next.js 14 (App Router)
+- Tailwind CSS
+- Simple backend using Next.js API routes
+- Storage: Supabase (for files + database)
+
+AUTH SYSTEM (IMPORTANT):
+- DO NOT use Google login or OAuth
+- DO NOT allow user registration
+- Create a simple login system using:
+  - username + password (hardcoded in environment variables)
+- Only 1 admin user exists
+- If not logged in → cannot access /admin
+- Use JWT or session cookie
+
+ENV VARIABLES:
+- ADMIN_USERNAME
+- ADMIN_PASSWORD
+
+FEATURES:
+
+1. LANDING PAGE (VERY IMPORTANT - MAKE IT IMPRESSIVE)
+- Modern, clean, 2026 portfolio design
+- Dark mode
+- Hero section:
+  - Name (dynamic placeholder)
+  - Title: "Fullstack Developer / System Builder"
+  - Short intro
+
+- SKILLS SECTION (IMPORTANT):
+  Based on this real portfolio content:
+  - Asset Management System
+  - Building & Facility Management
+  - Budgeting & Cost Efficiency
+  - Maintenance Planning
+  - Data Reporting & Documentation
+
+- Show as:
+  - cards or bento grid
+  - each skill has icon + short description
+
+- PROJECT HIGHLIGHT:
+  Use this real project example:
+  Title: "Asset & Building Management System Report 2025"
+  Description:
+  "Developed structured asset tracking, maintenance planning, and cost efficiency reporting system with 142 assets managed and 96% budget efficiency."
+
+- CTA BUTTON:
+  - View Portfolio Files
+
+---
+
+2. PORTFOLIO VIEW (PUBLIC - NO LOGIN)
+- Show uploaded files in grid/list
+- File types:
+  - PDF
+  - DOC/DOCX
+  - Images
+
+Each item:
+- Title
+- File type badge
+- Preview (modal)
+- Download button
+
+IMPORTANT:
+- Users can ONLY view & download
+- NO edit / delete / upload
+
+---
+
+3. ADMIN PANEL (/admin)
+- Login page:
+  - username + password only
+- After login:
+  Dashboard with:
+  - Upload file
+  - Input:
+    - title
+    - description
+    - file
+    - mark as "featured"
+- File list:
+  - delete
+  - edit
+
+---
+
+4. STORAGE:
+- Use Supabase Storage for file upload
+- Save metadata in database:
+  - id
+  - title
+  - description
+  - file_url
+  - file_type
+  - created_at
+
+---
+
+5. SECURITY:
+- Protect all admin routes
+- Only allow admin upload/delete
+- Public cannot access API admin routes
+
+---
+
+6. UI STYLE:
+- Minimalist
+- Clean spacing
+- Smooth animation (Framer Motion)
+- Bento grid layout
+- Professional (for job application)
+
+---
+
+7. NETLIFY READY:
+- Add netlify.toml:
+  build command: npm run build
+  publish: .next
+
+- Install Netlify Next plugin
+
+---
+
+8. OUTPUT:
+- Full working project
+- Clear instructions:
+  - setup env
+  - run locally
+  - deploy to Netlify via GitHub
+
+9. - Add download count for each file
+- Add "Featured Project" section on homepage
