@@ -15,36 +15,41 @@ const skills = [
     icon: FolderOpen,
     title: "Administrasi & Pengelolaan Dokumen",
     desc: "Terampil dalam dokumentasi terstruktur, pengelolaan arsip, dan sistem administrasi perkantoran yang efisien.",
-    color: "from-violet-500/20 to-purple-500/10",
-    border: "border-violet-500/30",
+    color: "from-blue-50 to-indigo-50",
+    border: "border-blue-200",
+    iconColor: "text-blue-600",
   },
   {
     icon: BarChart3,
     title: "Pengolahan Data & Pelaporan",
     desc: "Berpengalaman menyusun, mengolah, dan menyajikan data dalam laporan yang akurat menggunakan Microsoft Office (Word, Excel, PowerPoint).",
-    color: "from-blue-500/20 to-cyan-500/10",
-    border: "border-blue-500/30",
+    color: "from-sky-50 to-cyan-50",
+    border: "border-sky-200",
+    iconColor: "text-sky-600",
   },
   {
     icon: BookOpen,
     title: "Perancangan Modul Pelatihan",
     desc: "Mampu merancang dan memfasilitasi program pelatihan yang meningkatkan kinerja dan disiplin kerja peserta.",
-    color: "from-emerald-500/20 to-green-500/10",
-    border: "border-emerald-500/30",
+    color: "from-emerald-50 to-green-50",
+    border: "border-emerald-200",
+    iconColor: "text-emerald-600",
   },
   {
     icon: Search,
     title: "Metodologi Penelitian",
     desc: "Mahir dalam penelitian kualitatif & kuantitatif, analisis data, serta penyusunan laporan penelitian sesuai standar akademik.",
-    color: "from-orange-500/20 to-amber-500/10",
-    border: "border-orange-500/30",
+    color: "from-orange-50 to-amber-50",
+    border: "border-orange-200",
+    iconColor: "text-orange-600",
   },
   {
     icon: MessageSquare,
     title: "Komunikasi Interpersonal",
     desc: "Komunikator yang kuat dengan kemampuan membangun rapport, public speaking, dan people handling yang efektif.",
-    color: "from-rose-500/20 to-pink-500/10",
-    border: "border-rose-500/30",
+    color: "from-rose-50 to-pink-50",
+    border: "border-rose-200",
+    iconColor: "text-rose-600",
   },
 ];
 
@@ -58,9 +63,9 @@ const experiences = [
       "Berkontribusi dalam penyusunan program intervensi sederhana terkait isu parenting dan kekerasan berbasis kebutuhan klien.",
       "Mendukung pelaksanaan kegiatan psikoedukasi untuk meningkatkan kesadaran masyarakat terhadap isu perlindungan perempuan dan anak.",
     ],
-    color: "border-violet-500/30",
-    accent: "text-violet-400",
-    bg: "from-violet-500/10 to-transparent",
+    color: "border-blue-200",
+    accent: "text-blue-700",
+    bg: "from-blue-50 to-transparent",
   },
   {
     org: "Balai Latihan Kerja Banjarbaru",
@@ -72,9 +77,9 @@ const experiences = [
       "Mengorganisir pelatihan secara langsung kepada 10 peserta, mencakup penyampaian materi dan fasilitasi diskusi interaktif.",
       "Mengevaluasi pemahaman peserta pasca-pelatihan untuk mengukur efektivitas program.",
     ],
-    color: "border-blue-500/30",
-    accent: "text-blue-400",
-    bg: "from-blue-500/10 to-transparent",
+    color: "border-sky-200",
+    accent: "text-sky-700",
+    bg: "from-sky-50 to-transparent",
   },
   {
     org: "Character Building Development (CBD), FKIK ULM",
@@ -85,9 +90,9 @@ const experiences = [
       "Memfasilitasi diskusi kelompok dan menjaga dinamika komunikasi yang kondusif.",
       "Membangun hubungan interpersonal yang positif untuk mendukung perkembangan peserta.",
     ],
-    color: "border-emerald-500/30",
-    accent: "text-emerald-400",
-    bg: "from-emerald-500/10 to-transparent",
+    color: "border-emerald-200",
+    accent: "text-emerald-700",
+    bg: "from-emerald-50 to-transparent",
   },
 ];
 
@@ -103,9 +108,9 @@ const research = [
       "Menyusun laporan penelitian secara sistematis dan terstruktur sesuai standar Kemendikbudristek.",
     ],
     badge: "Lolos Pendanaan Nasional",
-    color: "border-amber-500/30",
-    accent: "text-amber-400",
-    bg: "from-amber-500/10 to-transparent",
+    color: "border-amber-200",
+    accent: "text-amber-700",
+    bg: "from-amber-50 to-transparent",
   },
   {
     title: "PPK Ormawa",
@@ -117,9 +122,9 @@ const research = [
       "Membangun komunikasi aktif antara tim dan warga dalam implementasi program.",
       "Mendukung pelaksanaan kegiatan berbasis pemberdayaan masyarakat secara berkelanjutan.",
     ],
-    color: "border-green-500/30",
-    accent: "text-green-400",
-    bg: "from-green-500/10 to-transparent",
+    color: "border-green-200",
+    accent: "text-green-700",
+    bg: "from-green-50 to-transparent",
   },
 ];
 
@@ -138,15 +143,15 @@ const committees = [
 
 function FileTypeBadge({ type }: { type: PortfolioFile["file_type"] }) {
   const map: Record<string, { label: string; color: string }> = {
-    pdf: { label: "PDF", color: "bg-red-500/20 text-red-400 border-red-500/30" },
-    doc: { label: "DOC", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-    image: { label: "IMG", color: "bg-green-500/20 text-green-400 border-green-500/30" },
-    spreadsheet: { label: "XLS", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
-    presentation: { label: "PPT", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
-    video: { label: "VID", color: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
-    audio: { label: "AUD", color: "bg-pink-500/20 text-pink-400 border-pink-500/30" },
-    archive: { label: "ZIP", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
-    other: { label: "FILE", color: "bg-zinc-500/20 text-zinc-400 border-zinc-500/30" },
+    pdf: { label: "PDF", color: "bg-red-50 text-red-600 border-red-200" },
+    doc: { label: "DOC", color: "bg-blue-50 text-blue-600 border-blue-200" },
+    image: { label: "IMG", color: "bg-green-50 text-green-600 border-green-200" },
+    spreadsheet: { label: "XLS", color: "bg-emerald-50 text-emerald-600 border-emerald-200" },
+    presentation: { label: "PPT", color: "bg-orange-50 text-orange-600 border-orange-200" },
+    video: { label: "VID", color: "bg-purple-50 text-purple-600 border-purple-200" },
+    audio: { label: "AUD", color: "bg-pink-50 text-pink-600 border-pink-200" },
+    archive: { label: "ZIP", color: "bg-yellow-50 text-yellow-600 border-yellow-200" },
+    other: { label: "FILE", color: "bg-slate-100 text-slate-500 border-slate-200" },
   };
   const { label, color } = map[type] ?? map.other;
   return (
@@ -155,8 +160,8 @@ function FileTypeBadge({ type }: { type: PortfolioFile["file_type"] }) {
 }
 
 function FileIcon({ type }: { type: PortfolioFile["file_type"] }) {
-  if (type === "image") return <Image className="w-8 h-8 text-green-400" />;
-  return <FileText className="w-8 h-8 text-blue-400" />;
+  if (type === "image") return <Image className="w-8 h-8 text-emerald-500" />;
+  return <FileText className="w-8 h-8 text-blue-500" />;
 }
 
 function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => void }) {
@@ -193,12 +198,12 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
           <embed
             src={`${file.file_url}#toolbar=1&navpanes=0`}
             type="application/pdf"
-            className="w-full rounded-lg border border-zinc-700"
+            className="w-full rounded-lg border border-slate-200"
             style={{ height: "50vh" }}
           />
           <button
             onClick={openInNewTab}
-            className="flex items-center justify-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2.5 px-4 transition-colors"
+            className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 rounded-xl py-2.5 px-4 transition-colors bg-blue-50 hover:bg-blue-100"
           >
             <Eye className="w-4 h-4" />
             Buka PDF di tab baru
@@ -208,12 +213,12 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
     }
 
     return (
-      <div className="flex flex-col items-center justify-center h-48 gap-4 text-zinc-400">
+      <div className="flex flex-col items-center justify-center h-48 gap-4 text-slate-400">
         <FileText className="w-16 h-16 opacity-40" />
         <p className="text-sm">Preview tidak tersedia untuk tipe file ini</p>
         <button
           onClick={openInNewTab}
-          className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2 px-4 transition-colors"
+          className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 rounded-xl py-2 px-4 transition-colors bg-blue-50 hover:bg-blue-100"
         >
           <Eye className="w-4 h-4" />
           Buka di tab baru
@@ -223,45 +228,45 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="bg-zinc-900 border border-zinc-700 rounded-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden"
+        className="bg-white border border-slate-200 rounded-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-xl"
       >
-        <div className="flex items-center justify-between p-6 border-b border-zinc-800">
+        <div className="flex items-center justify-between p-6 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <FileIcon type={file.file_type} />
             <div>
-              <h3 className="font-semibold text-white">{file.title}</h3>
+              <h3 className="font-semibold text-slate-900">{file.title}</h3>
               <div className="flex items-center gap-2 mt-1">
                 <FileTypeBadge type={file.file_type} />
-                <span className="text-xs text-zinc-500">{file.download_count} unduhan</span>
+                <span className="text-xs text-slate-400">{file.download_count} unduhan</span>
               </div>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+          <button onClick={onClose} className="p-2 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
         <div className="flex-1 overflow-auto p-6">
           {renderPreview()}
           {file.description && (
-            <p className="mt-4 text-zinc-400 text-sm">{file.description}</p>
+            <p className="mt-4 text-slate-500 text-sm">{file.description}</p>
           )}
         </div>
-        <div className="p-6 border-t border-zinc-800 flex gap-3">
+        <div className="p-6 border-t border-slate-100 flex gap-3">
           <button
             onClick={openInNewTab}
-            className="flex-1 flex items-center justify-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-medium py-3 px-6 rounded-xl transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 text-slate-600 font-medium py-3 px-6 rounded-xl transition-colors hover:bg-slate-50"
           >
             <Eye className="w-4 h-4" />
             Buka
           </button>
           <button
             onClick={handleDownload}
-            className="flex-1 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-colors shadow-sm"
           >
             <Download className="w-4 h-4" />
             Unduh
@@ -282,25 +287,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="font-mono text-sm text-zinc-400">azizah.khairunnisa</span>
+          <span className="font-mono text-sm text-blue-600 font-semibold">azizah.khairunnisa</span>
           <div className="flex items-center gap-5">
-            <a href="#experience" className="text-sm text-zinc-400 hover:text-white transition-colors">Pengalaman</a>
-            <a href="#skills" className="text-sm text-zinc-400 hover:text-white transition-colors">Keahlian</a>
-            <a href="#portfolio" className="text-sm text-zinc-400 hover:text-white transition-colors">Portfolio</a>
-            <a href="#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">Kontak</a>
-            <a href="/admin" className="text-sm text-zinc-400 hover:text-white transition-colors">Admin</a>
+            <a href="#experience" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Pengalaman</a>
+            <a href="#skills" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Keahlian</a>
+            <a href="#portfolio" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Portfolio</a>
+            <a href="#contact" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Kontak</a>
+            <a href="/admin" className="text-sm text-slate-400 hover:text-slate-600 transition-colors">Admin</a>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-zinc-950 to-zinc-950" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,_#ffffff08_1px,_transparent_1px),_linear-gradient(to_bottom,_#ffffff08_1px,_transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/70 via-slate-50 to-slate-50" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,_#0000000a_1px,_transparent_1px),_linear-gradient(to_bottom,_#0000000a_1px,_transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -313,17 +318,17 @@ export default function Home() {
               className="shrink-0"
             >
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-600/20 blur-2xl scale-110" />
-                <div className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-violet-500/30 shadow-2xl shadow-violet-900/40">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-200/60 to-sky-200/30 blur-2xl scale-110" />
+                <div className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-2xl shadow-blue-200/60 ring-1 ring-blue-100">
                   <img
                     src={azizahPhoto}
                     alt="Azizah Khairunnisa"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 bg-zinc-900 border border-zinc-700 rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-xs text-zinc-300 font-mono whitespace-nowrap">Open to work</span>
+                <div className="absolute -bottom-2 -right-2 bg-white border border-slate-200 rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-md">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs text-slate-700 font-medium whitespace-nowrap">Open to work</span>
                 </div>
               </div>
             </motion.div>
@@ -335,15 +340,15 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex-1 text-center lg:text-left"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent mb-3">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-3">
                 Azizah Khairunnisa
               </h1>
 
-              <p className="text-lg md:text-xl text-zinc-400 font-mono mb-5">
-                Human Resources <span className="text-violet-400">&</span> Administration Enthusiast
+              <p className="text-lg md:text-xl text-blue-600 font-mono mb-5">
+                Human Resources <span className="text-slate-400">&</span> Administration Enthusiast
               </p>
 
-              <p className="text-base text-zinc-500 max-w-xl mb-6 leading-relaxed">
+              <p className="text-base text-slate-500 max-w-xl mb-6 leading-relaxed">
                 Lulusan S1 Psikologi dengan ketertarikan pada bidang Human Resources dan administrasi.
                 Berpengalaman dalam pengelolaan data, administrasi sekretariat, pelatihan, serta koordinasi
                 kegiatan berbasis tim. Detail-oriented, adaptif, dan berkomitmen memberikan hasil kerja yang
@@ -351,17 +356,17 @@ export default function Home() {
               </p>
 
               {/* Contact info */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 text-sm text-zinc-500">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 text-sm text-slate-500">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-violet-400" />
+                  <MapPin className="w-3.5 h-3.5 text-blue-500" />
                   Banjarmasin Utara, Kalimantan Selatan
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-violet-400" />
+                  <Mail className="w-3.5 h-3.5 text-blue-500" />
                   azhkrn@gmail.com
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-violet-400" />
+                  <Phone className="w-3.5 h-3.5 text-blue-500" />
                   +62 896 0448 8288
                 </span>
               </div>
@@ -369,14 +374,14 @@ export default function Home() {
               <div className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
                 <button
                   onClick={scrollToPortfolio}
-                  className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25"
+                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md shadow-blue-200 hover:shadow-blue-300"
                 >
                   Lihat Portfolio
                   <ChevronRight className="w-4 h-4" />
                 </button>
                 <a
                   href="#experience"
-                  className="flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors"
+                  className="flex items-center gap-2 border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-900 font-semibold py-3 px-8 rounded-xl transition-colors hover:bg-white"
                 >
                   Pengalaman Saya
                 </a>
@@ -396,8 +401,8 @@ export default function Home() {
                   { value: "2025", label: "Lulus" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
-                    <div className="text-xl font-bold text-white">{s.value}</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+                    <div className="text-xl font-bold text-blue-600">{s.value}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -407,12 +412,12 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronRight className="w-5 h-5 text-zinc-600 rotate-90" />
+          <ChevronRight className="w-5 h-5 text-slate-300 rotate-90" />
         </div>
       </section>
 
       {/* Experience */}
-      <section id="experience" className="py-24 px-6 bg-zinc-900/30">
+      <section id="experience" className="py-24 px-6 bg-blue-50/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -421,10 +426,10 @@ export default function Home() {
             className="mb-14"
           >
             <div className="flex items-center gap-3 mb-3">
-              <Briefcase className="w-5 h-5 text-violet-400" />
-              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Pengalaman Kerja & Magang</span>
+              <Briefcase className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-mono text-blue-600 uppercase tracking-widest">Pengalaman Kerja & Magang</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Riwayat Pengalaman</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Riwayat Pengalaman</h2>
           </motion.div>
 
           <div className="space-y-6">
@@ -435,27 +440,27 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl border ${exp.color} bg-gradient-to-br ${exp.bg} p-6`}
+                className={`rounded-2xl border ${exp.color} bg-gradient-to-br ${exp.bg} p-6 bg-white shadow-sm`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Building2 className={`w-4 h-4 ${exp.accent}`} />
-                      <span className={`font-semibold text-lg text-white`}>{exp.org}</span>
+                      <span className="font-semibold text-lg text-slate-900">{exp.org}</span>
                     </div>
                     <p className={`text-sm font-medium ${exp.accent}`}>{exp.role}</p>
                     {exp.subtitle && (
-                      <p className="text-xs text-zinc-500 mt-1 italic">{exp.subtitle}</p>
+                      <p className="text-xs text-slate-400 mt-1 italic">{exp.subtitle}</p>
                     )}
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
-                    <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
-                    <span className="text-sm font-mono text-zinc-400">{exp.year}</span>
+                    <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="text-sm font-mono text-slate-500">{exp.year}</span>
                   </div>
                 </div>
                 <ul className="space-y-2">
                   {exp.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-zinc-400">
+                    <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
                       <span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${exp.accent.replace("text-", "bg-")}`} />
                       {b}
                     </li>
@@ -468,7 +473,7 @@ export default function Home() {
       </section>
 
       {/* Research & Projects */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -477,10 +482,10 @@ export default function Home() {
             className="mb-14"
           >
             <div className="flex items-center gap-3 mb-3">
-              <FlaskConical className="w-5 h-5 text-amber-400" />
-              <span className="text-sm font-mono text-amber-400 uppercase tracking-widest">Penelitian & Proyek</span>
+              <FlaskConical className="w-5 h-5 text-amber-600" />
+              <span className="text-sm font-mono text-amber-600 uppercase tracking-widest">Penelitian & Proyek</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Karya & Penelitian</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Karya & Penelitian</h2>
           </motion.div>
 
           <div className="space-y-6">
@@ -491,29 +496,29 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl border ${r.color} bg-gradient-to-br ${r.bg} p-6`}
+                className={`rounded-2xl border ${r.color} bg-gradient-to-br ${r.bg} p-6 shadow-sm`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="font-bold text-white text-lg">{r.title}</span>
+                      <span className="font-bold text-slate-900 text-lg">{r.title}</span>
                       {r.badge && (
-                        <span className={`text-xs px-2.5 py-0.5 rounded-full border ${r.color} ${r.accent} font-medium`}>
+                        <span className={`text-xs px-2.5 py-0.5 rounded-full border ${r.color} ${r.accent} font-medium bg-white`}>
                           {r.badge}
                         </span>
                       )}
                     </div>
                     <p className={`text-sm font-medium ${r.accent} mb-1`}>{r.role}</p>
-                    <p className="text-xs text-zinc-500 italic leading-relaxed">{r.subtitle}</p>
+                    <p className="text-xs text-slate-400 italic leading-relaxed">{r.subtitle}</p>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
-                    <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
-                    <span className="text-sm font-mono text-zinc-400">{r.year}</span>
+                    <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="text-sm font-mono text-slate-500">{r.year}</span>
                   </div>
                 </div>
                 <ul className="space-y-2">
                   {r.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-zinc-400">
+                    <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
                       <span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${r.accent.replace("text-", "bg-")}`} />
                       {b}
                     </li>
@@ -526,7 +531,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-24 px-6 bg-zinc-900/30">
+      <section id="skills" className="py-24 px-6 bg-blue-50/50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -535,10 +540,10 @@ export default function Home() {
             className="mb-14"
           >
             <div className="flex items-center gap-3 mb-3">
-              <Star className="w-5 h-5 text-violet-400" />
-              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Kompetensi</span>
+              <Star className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-mono text-blue-600 uppercase tracking-widest">Kompetensi</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Keahlian Utama</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Keahlian Utama</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -549,15 +554,15 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative p-6 rounded-2xl bg-gradient-to-br ${skill.color} border ${skill.border} hover:scale-[1.02] transition-transform cursor-default`}
+                className={`relative p-6 rounded-2xl bg-gradient-to-br ${skill.color} border ${skill.border} hover:scale-[1.02] transition-transform cursor-default shadow-sm`}
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-xl bg-zinc-900/50">
-                    <skill.icon className="w-6 h-6 text-white" />
+                  <div className="p-2 rounded-xl bg-white shadow-sm">
+                    <skill.icon className={`w-6 h-6 ${skill.iconColor}`} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white mb-2">{skill.title}</h3>
-                    <p className="text-sm text-zinc-400 leading-relaxed">{skill.desc}</p>
+                    <h3 className="font-semibold text-slate-900 mb-2">{skill.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{skill.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -568,20 +573,20 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="md:col-span-2 lg:col-span-2 p-6 rounded-2xl bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-zinc-700/50"
+              className="md:col-span-2 lg:col-span-2 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-xl bg-zinc-900/50">
-                  <Users className="w-6 h-6 text-amber-400" />
+                <div className="p-2 rounded-xl bg-amber-50 shadow-sm">
+                  <Users className="w-6 h-6 text-amber-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-2">Koordinasi Tim & Kepanitiaan</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+                  <h3 className="font-semibold text-slate-900 mb-2">Koordinasi Tim & Kepanitiaan</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
                     Berpengalaman merencanakan, mengorganisir, dan melaksanakan program dan acara dari awal hingga akhir — mengelola logistik, peserta, dan memastikan kelancaran kegiatan di lingkungan profesional dan akademik.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {["Leadership", "Public Speaking", "People Handling", "Empati Tinggi", "Detail-Oriented", "Adaptif"].map((tag) => (
-                      <span key={tag} className="text-xs px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
+                      <span key={tag} className="text-xs px-3 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
                         {tag}
                       </span>
                     ))}
@@ -594,7 +599,7 @@ export default function Home() {
       </section>
 
       {/* Education */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -603,10 +608,10 @@ export default function Home() {
             className="mb-14"
           >
             <div className="flex items-center gap-3 mb-3">
-              <GraduationCap className="w-5 h-5 text-blue-400" />
-              <span className="text-sm font-mono text-blue-400 uppercase tracking-widest">Pendidikan</span>
+              <GraduationCap className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-mono text-blue-600 uppercase tracking-widest">Pendidikan</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Riwayat Pendidikan</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Riwayat Pendidikan</h2>
           </motion.div>
 
           <div className="space-y-4">
@@ -616,18 +621,20 @@ export default function Home() {
                 major: "S1 Psikologi",
                 detail: "IPK 3.59",
                 period: "2022 – 2026",
-                color: "border-blue-500/30",
-                accent: "text-blue-400",
-                bg: "from-blue-500/10 to-transparent",
+                color: "border-blue-200",
+                accent: "text-blue-700",
+                bg: "from-blue-50 to-transparent",
+                iconBg: "bg-blue-50",
               },
               {
                 school: "MAN 1 Banjarmasin",
                 major: "Jurusan MIPA",
                 detail: "Nilai Rata-Rata 91.08/100",
                 period: "2019 – 2022",
-                color: "border-indigo-500/30",
-                accent: "text-indigo-400",
-                bg: "from-indigo-500/10 to-transparent",
+                color: "border-indigo-200",
+                accent: "text-indigo-700",
+                bg: "from-indigo-50 to-transparent",
+                iconBg: "bg-indigo-50",
               },
             ].map((edu, i) => (
               <motion.div
@@ -636,21 +643,21 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl border ${edu.color} bg-gradient-to-br ${edu.bg} p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4`}
+                className={`rounded-2xl border ${edu.color} bg-gradient-to-br ${edu.bg} p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm`}
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 rounded-xl bg-zinc-900/60 shrink-0">
+                  <div className={`p-2.5 rounded-xl ${edu.iconBg} shrink-0`}>
                     <GraduationCap className={`w-5 h-5 ${edu.accent}`} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">{edu.school}</h3>
+                    <h3 className="font-bold text-slate-900 text-lg">{edu.school}</h3>
                     <p className={`text-sm font-medium ${edu.accent}`}>{edu.major}</p>
-                    <p className="text-sm text-zinc-500 mt-0.5">{edu.detail}</p>
+                    <p className="text-sm text-slate-500 mt-0.5">{edu.detail}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 shrink-0 pl-12 sm:pl-0">
-                  <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
-                  <span className="text-sm font-mono text-zinc-400">{edu.period}</span>
+                  <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
+                  <span className="text-sm font-mono text-slate-500">{edu.period}</span>
                 </div>
               </motion.div>
             ))}
@@ -659,7 +666,7 @@ export default function Home() {
       </section>
 
       {/* Organizations & Committees */}
-      <section className="py-24 px-6 bg-zinc-900/30">
+      <section className="py-24 px-6 bg-blue-50/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -668,10 +675,10 @@ export default function Home() {
             className="mb-14"
           >
             <div className="flex items-center gap-3 mb-3">
-              <Users className="w-5 h-5 text-emerald-400" />
-              <span className="text-sm font-mono text-emerald-400 uppercase tracking-widest">Organisasi & Kepanitiaan</span>
+              <Users className="w-5 h-5 text-emerald-600" />
+              <span className="text-sm font-mono text-emerald-600 uppercase tracking-widest">Organisasi & Kepanitiaan</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Keterlibatan Organisasi</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Keterlibatan Organisasi</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -681,16 +688,16 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-4">Organisasi</h3>
+              <h3 className="text-sm font-mono text-slate-400 uppercase tracking-widest mb-4">Organisasi</h3>
               <div className="space-y-3">
                 {organizations.map((org, i) => (
-                  <div key={i} className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 transition-colors">
+                  <div key={i} className="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <p className="font-semibold text-white text-sm">{org.name}</p>
-                        <p className="text-xs text-emerald-400 mt-0.5">{org.role}</p>
+                        <p className="font-semibold text-slate-900 text-sm">{org.name}</p>
+                        <p className="text-xs text-emerald-600 mt-0.5">{org.role}</p>
                       </div>
-                      <span className="text-xs font-mono text-zinc-500 shrink-0">{org.period}</span>
+                      <span className="text-xs font-mono text-slate-400 shrink-0">{org.period}</span>
                     </div>
                   </div>
                 ))}
@@ -704,16 +711,16 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-4">Kepanitiaan</h3>
+              <h3 className="text-sm font-mono text-slate-400 uppercase tracking-widest mb-4">Kepanitiaan</h3>
               <div className="space-y-3">
                 {committees.map((c, i) => (
-                  <div key={i} className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 transition-colors">
+                  <div key={i} className="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-sm transition-all">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <p className="font-semibold text-white text-sm leading-snug">{c.name}</p>
-                        <p className="text-xs text-violet-400 mt-0.5">{c.role}</p>
+                        <p className="font-semibold text-slate-900 text-sm leading-snug">{c.name}</p>
+                        <p className="text-xs text-blue-600 mt-0.5">{c.role}</p>
                       </div>
-                      <span className="text-xs font-mono text-zinc-500 shrink-0">{c.year}</span>
+                      <span className="text-xs font-mono text-slate-400 shrink-0">{c.year}</span>
                     </div>
                   </div>
                 ))}
@@ -724,7 +731,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Files */}
-      <section id="portfolio" className="py-24 px-6">
+      <section id="portfolio" className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -733,11 +740,11 @@ export default function Home() {
             className="mb-12"
           >
             <div className="flex items-center gap-3 mb-3">
-              <Award className="w-5 h-5 text-violet-400" />
-              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Dokumen</span>
+              <Award className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-mono text-blue-600 uppercase tracking-widest">Dokumen</span>
             </div>
-            <h2 className="text-4xl font-bold text-white mb-3">Portfolio Files</h2>
-            <p className="text-zinc-500">CV, laporan, dan dokumen profesional yang bisa diunduh.</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-3">Portfolio Files</h2>
+            <p className="text-slate-500">CV, laporan, dan dokumen profesional yang bisa diunduh.</p>
           </motion.div>
 
           {featured.length > 0 && (
@@ -748,22 +755,22 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="rounded-2xl border border-amber-500/20 bg-zinc-900 p-6 flex items-center gap-4"
+                  className="rounded-2xl border border-amber-200 bg-amber-50 p-6 flex items-center gap-4 shadow-sm"
                 >
-                  <div className="p-3 rounded-xl bg-amber-500/10">
+                  <div className="p-3 rounded-xl bg-white shadow-sm">
                     <FileIcon type={file.file_type} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-xs text-amber-400 font-medium">Unggulan</span>
+                      <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
+                      <span className="text-xs text-amber-600 font-medium">Unggulan</span>
                     </div>
-                    <h4 className="font-semibold text-white truncate">{file.title}</h4>
-                    <p className="text-sm text-zinc-500 truncate">{file.description}</p>
+                    <h4 className="font-semibold text-slate-900 truncate">{file.title}</h4>
+                    <p className="text-sm text-slate-500 truncate">{file.description}</p>
                   </div>
                   <button
                     onClick={() => setPreview(file)}
-                    className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white transition-colors"
+                    className="p-2 rounded-lg bg-white hover:bg-slate-50 text-slate-400 hover:text-slate-600 transition-colors shadow-sm"
                   >
                     <Eye className="w-4 h-4" />
                   </button>
@@ -773,8 +780,8 @@ export default function Home() {
           )}
 
           {files.length === 0 ? (
-            <div className="text-center py-24 text-zinc-600">
-              <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
+            <div className="text-center py-24 text-slate-400">
+              <FileText className="w-12 h-12 mx-auto mb-4 opacity-40" />
               <p>Belum ada file yang diunggah. Nantikan pembaruan.</p>
             </div>
           ) : (
@@ -786,34 +793,34 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-2xl p-5 transition-all"
+                  className="group bg-white border border-slate-200 hover:border-blue-200 hover:shadow-md rounded-2xl p-5 transition-all"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition-colors">
+                    <div className="p-3 rounded-xl bg-slate-100 group-hover:bg-blue-50 transition-colors">
                       <FileIcon type={file.file_type} />
                     </div>
-                    {file.featured && <Star className="w-4 h-4 text-amber-400 fill-amber-400" />}
+                    {file.featured && <Star className="w-4 h-4 text-amber-500 fill-amber-500" />}
                   </div>
 
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-1">
                       <FileTypeBadge type={file.file_type} />
                     </div>
-                    <h3 className="font-semibold text-white mt-2 line-clamp-2">{file.title}</h3>
+                    <h3 className="font-semibold text-slate-900 mt-2 line-clamp-2">{file.title}</h3>
                     {file.description && (
-                      <p className="text-sm text-zinc-500 mt-1 line-clamp-2">{file.description}</p>
+                      <p className="text-sm text-slate-500 mt-1 line-clamp-2">{file.description}</p>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2 pt-4 border-t border-zinc-800">
-                    <span className="text-xs text-zinc-600 flex items-center gap-1">
+                  <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
+                    <span className="text-xs text-slate-400 flex items-center gap-1">
                       <Download className="w-3 h-3" />
                       {file.download_count}
                     </span>
                     <div className="flex-1" />
                     <button
                       onClick={() => setPreview(file)}
-                      className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       Preview
@@ -823,7 +830,7 @@ export default function Home() {
                         const url = await trackDownload(file.id);
                         window.open(url, "_blank");
                       }}
-                      className="flex items-center gap-1.5 text-xs text-white bg-violet-600 hover:bg-violet-500 px-3 py-1.5 rounded-lg transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
                     >
                       <Download className="w-3.5 h-3.5" />
                       Unduh
@@ -837,40 +844,40 @@ export default function Home() {
       </section>
 
       {/* Contact / Footer */}
-      <section id="contact" className="py-24 px-6 bg-zinc-900/30">
+      <section id="contact" className="py-24 px-6 bg-gradient-to-br from-blue-600 to-blue-700">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-4 py-1.5 mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm text-violet-300 font-mono">Terbuka untuk Peluang Baru</span>
+              <span className="text-sm text-blue-100 font-mono">Terbuka untuk Peluang Baru</span>
             </div>
             <h2 className="text-4xl font-bold text-white mb-4">Hubungi Saya</h2>
-            <p className="text-zinc-500 mb-10">
+            <p className="text-blue-200 mb-10">
               Tertarik untuk berkolaborasi atau memiliki peluang yang sesuai? Jangan ragu untuk menghubungi saya.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="mailto:azhkrn@gmail.com"
-                className="flex items-center gap-2.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25 w-full sm:w-auto justify-center"
+                className="flex items-center gap-2.5 bg-white hover:bg-blue-50 text-blue-700 font-semibold py-3 px-8 rounded-xl transition-all shadow-md w-full sm:w-auto justify-center"
               >
                 <Mail className="w-4 h-4" />
                 azhkrn@gmail.com
               </a>
               <a
                 href="tel:+6289604488288"
-                className="flex items-center gap-2.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors w-full sm:w-auto justify-center"
+                className="flex items-center gap-2.5 border border-white/30 hover:border-white/60 text-white font-semibold py-3 px-8 rounded-xl transition-colors hover:bg-white/10 w-full sm:w-auto justify-center"
               >
                 <Phone className="w-4 h-4" />
                 +62 896 0448 8288
               </a>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-1.5 text-zinc-600 text-sm">
+            <div className="mt-8 flex items-center justify-center gap-1.5 text-blue-200 text-sm">
               <MapPin className="w-3.5 h-3.5" />
               Banjarmasin Utara, Kalimantan Selatan
             </div>
@@ -878,7 +885,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-zinc-800 py-6 px-6 text-center text-zinc-600 text-sm">
+      <footer className="border-t border-slate-200 py-6 px-6 text-center text-slate-400 text-sm bg-white">
         <p>© {new Date().getFullYear()} Azizah Khairunnisa · All rights reserved</p>
       </footer>
 
