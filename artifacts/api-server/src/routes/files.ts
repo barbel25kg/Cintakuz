@@ -17,6 +17,11 @@ router.get("/", async (req, res) => {
 
   if (error) {
     req.log.error(error);
+    // Return empty array gracefully if table doesn't exist yet
+    if (error.code === "PGRST205" || error.code === "42P01") {
+      res.json([]);
+      return;
+    }
     res.status(500).json({ error: "Failed to fetch files" });
     return;
   }
