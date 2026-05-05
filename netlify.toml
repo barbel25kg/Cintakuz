@@ -1,10 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "artifacts/portfolio/dist/public"
 
 [build.environment]
   PORT = "5173"
   BASE_PATH = "/"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
