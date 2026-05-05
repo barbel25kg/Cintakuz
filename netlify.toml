@@ -4,6 +4,7 @@
 
 [build.environment]
   PORT = "5173"
+  BASE_PATH = "/"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
