@@ -4,45 +4,135 @@ import { fetchFiles, trackDownload, type PortfolioFile } from "@/lib/api";
 import { useState } from "react";
 import {
   FileText, Image, Download, Eye, Star, ChevronRight,
-  FolderOpen, BarChart3, BookOpen, Search, MessageSquare, CalendarCheck, X,
+  FolderOpen, BarChart3, BookOpen, Search, MessageSquare, X,
+  MapPin, Mail, Phone, Briefcase, GraduationCap, Users, Award,
+  FlaskConical, CalendarDays, Building2,
 } from "lucide-react";
 
 const skills = [
   {
     icon: FolderOpen,
-    title: "Administrative & Document Management",
-    desc: "Skilled in structured documentation, record keeping, and maintaining organized administrative systems for efficient operations.",
+    title: "Administrasi & Pengelolaan Dokumen",
+    desc: "Terampil dalam dokumentasi terstruktur, pengelolaan arsip, dan sistem administrasi perkantoran yang efisien.",
     color: "from-violet-500/20 to-purple-500/10",
     border: "border-violet-500/30",
   },
   {
     icon: BarChart3,
-    title: "Data Processing & Reporting",
-    desc: "Experienced in compiling, processing, and presenting data in clear, accurate reports that support informed decision-making.",
+    title: "Pengolahan Data & Pelaporan",
+    desc: "Berpengalaman menyusun, mengolah, dan menyajikan data dalam laporan yang akurat menggunakan Microsoft Office (Word, Excel, PowerPoint).",
     color: "from-blue-500/20 to-cyan-500/10",
     border: "border-blue-500/30",
   },
   {
     icon: BookOpen,
-    title: "Training & Program Development",
-    desc: "Capable of designing and facilitating training programs that improve team performance and professional development.",
+    title: "Perancangan Modul Pelatihan",
+    desc: "Mampu merancang dan memfasilitasi program pelatihan yang meningkatkan kinerja dan disiplin kerja peserta.",
     color: "from-emerald-500/20 to-green-500/10",
     border: "border-emerald-500/30",
   },
   {
     icon: Search,
-    title: "Research & Analysis",
-    desc: "Proficient in conducting systematic research, analyzing findings, and drawing evidence-based conclusions.",
+    title: "Metodologi Penelitian",
+    desc: "Mahir dalam penelitian kualitatif & kuantitatif, analisis data, serta penyusunan laporan penelitian sesuai standar akademik.",
     color: "from-orange-500/20 to-amber-500/10",
     border: "border-orange-500/30",
   },
   {
     icon: MessageSquare,
-    title: "Interpersonal Communication",
-    desc: "Strong communicator with the ability to build rapport, convey information clearly, and collaborate effectively across teams.",
+    title: "Komunikasi Interpersonal",
+    desc: "Komunikator yang kuat dengan kemampuan membangun rapport, public speaking, dan people handling yang efektif.",
     color: "from-rose-500/20 to-pink-500/10",
     border: "border-rose-500/30",
   },
+];
+
+const experiences = [
+  {
+    org: "UPTD PPA Banjarmasin",
+    role: "Peserta Magang",
+    year: "2025",
+    bullets: [
+      "Melakukan observasi dan pendampingan awal terhadap klien perempuan dan anak menggunakan pendekatan psikologis terstruktur.",
+      "Berkontribusi dalam penyusunan program intervensi sederhana terkait isu parenting dan kekerasan berbasis kebutuhan klien.",
+      "Mendukung pelaksanaan kegiatan psikoedukasi untuk meningkatkan kesadaran masyarakat terhadap isu perlindungan perempuan dan anak.",
+    ],
+    color: "border-violet-500/30",
+    accent: "text-violet-400",
+    bg: "from-violet-500/10 to-transparent",
+  },
+  {
+    org: "Balai Latihan Kerja Banjarbaru",
+    role: "Pelaksana Pelatihan",
+    year: "2025",
+    subtitle: '"Work Engagement untuk Meningkatkan Disiplin Kerja"',
+    bullets: [
+      "Merancang dan mengembangkan modul pelatihan terkait peningkatan work engagement dan disiplin kerja.",
+      "Mengorganisir pelatihan secara langsung kepada 10 peserta, mencakup penyampaian materi dan fasilitasi diskusi interaktif.",
+      "Mengevaluasi pemahaman peserta pasca-pelatihan untuk mengukur efektivitas program.",
+    ],
+    color: "border-blue-500/30",
+    accent: "text-blue-400",
+    bg: "from-blue-500/10 to-transparent",
+  },
+  {
+    org: "Character Building Development (CBD), FKIK ULM",
+    role: "Mentor",
+    year: "2023",
+    bullets: [
+      "Membimbing 6–10 peserta dalam pengembangan karakter dan soft skills.",
+      "Memfasilitasi diskusi kelompok dan menjaga dinamika komunikasi yang kondusif.",
+      "Membangun hubungan interpersonal yang positif untuk mendukung perkembangan peserta.",
+    ],
+    color: "border-emerald-500/30",
+    accent: "text-emerald-400",
+    bg: "from-emerald-500/10 to-transparent",
+  },
+];
+
+const research = [
+  {
+    title: "PKM-RSH — Lolos Pendanaan Kemendikbudristek",
+    role: "Ketua Peneliti",
+    year: "2025",
+    subtitle: "Clarity Finance: Analisis Dampak dan Strategi Psikologis Penanggulangan Debt Culture Gen Z Akibat Framing Cicilan 0% Berbasis Prospect Theory",
+    bullets: [
+      "Memimpin tim penelitian dari perancangan hingga penyusunan laporan akhir yang lolos seleksi pendanaan nasional.",
+      "Menganalisis perilaku finansial Gen Z terkait penggunaan paylater dan pinjaman online melalui pendekatan psikologi keputusan berbasis Prospect Theory.",
+      "Menyusun laporan penelitian secara sistematis dan terstruktur sesuai standar Kemendikbudristek.",
+    ],
+    badge: "Lolos Pendanaan Nasional",
+    color: "border-amber-500/30",
+    accent: "text-amber-400",
+    bg: "from-amber-500/10 to-transparent",
+  },
+  {
+    title: "PPK Ormawa",
+    role: "Production & Marketing Coordinator",
+    year: "2024",
+    subtitle: "Pemberdayaan Masyarakat melalui Bank Sampah 'PAMAN' Berbasis Rumah Sampah Digital Berkonsep Ekonomi Sirkular – Desa Rangas Tengah",
+    bullets: [
+      "Mengoordinasikan produksi dan pemasaran produk berbasis limbah (sekam padi & minyak jelantah) dalam program pemberdayaan masyarakat.",
+      "Membangun komunikasi aktif antara tim dan warga dalam implementasi program.",
+      "Mendukung pelaksanaan kegiatan berbasis pemberdayaan masyarakat secara berkelanjutan.",
+    ],
+    color: "border-green-500/30",
+    accent: "text-green-400",
+    bg: "from-green-500/10 to-transparent",
+  },
+];
+
+const organizations = [
+  { name: "BEM FKIK ULM", role: "Staff Riset Keilmuan & Inovasi", period: "2024–2025" },
+  { name: "Altruistic Community", role: "Social Activities & Volunteering Division", period: "2023–2024" },
+  { name: "MPK-OSIM MAN 1 Banjarmasin", role: "Pengurus MPK Bidang Komisi A", period: "2019–2022" },
+];
+
+const committees = [
+  { name: "Panitia PKKMB Fakultas", role: "Divisi Acara", year: "2024" },
+  { name: "Panitia Dies Natalis FKIK", role: "Divisi Sponsorship", year: "2024" },
+  { name: 'Open House BEM FKIK "Goes to School", ULM', role: "Divisi Kestari", year: "2024" },
+  { name: "Workshop Analisa Kepribadian Berdasarkan Tulisan Tangan", role: "Ketua Sekretaris", year: "2022" },
 ];
 
 function FileTypeBadge({ type }: { type: PortfolioFile["file_type"] }) {
@@ -110,7 +200,7 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
             className="flex items-center justify-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2.5 px-4 transition-colors"
           >
             <Eye className="w-4 h-4" />
-            Open PDF in new tab
+            Buka PDF di tab baru
           </button>
         </div>
       );
@@ -119,13 +209,13 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
     return (
       <div className="flex flex-col items-center justify-center h-48 gap-4 text-zinc-400">
         <FileText className="w-16 h-16 opacity-40" />
-        <p className="text-sm">Preview not available for this file type</p>
+        <p className="text-sm">Preview tidak tersedia untuk tipe file ini</p>
         <button
           onClick={openInNewTab}
           className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/50 rounded-xl py-2 px-4 transition-colors"
         >
           <Eye className="w-4 h-4" />
-          Open in new tab
+          Buka di tab baru
         </button>
       </div>
     );
@@ -146,7 +236,7 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
               <h3 className="font-semibold text-white">{file.title}</h3>
               <div className="flex items-center gap-2 mt-1">
                 <FileTypeBadge type={file.file_type} />
-                <span className="text-xs text-zinc-500">{file.download_count} downloads</span>
+                <span className="text-xs text-zinc-500">{file.download_count} unduhan</span>
               </div>
             </div>
           </div>
@@ -166,14 +256,14 @@ function PreviewModal({ file, onClose }: { file: PortfolioFile; onClose: () => v
             className="flex-1 flex items-center justify-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-medium py-3 px-6 rounded-xl transition-colors"
           >
             <Eye className="w-4 h-4" />
-            Open
+            Buka
           </button>
           <button
             onClick={handleDownload}
             className="flex-1 flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-medium py-3 px-6 rounded-xl transition-colors"
           >
             <Download className="w-4 h-4" />
-            Download
+            Unduh
           </button>
         </div>
       </motion.div>
@@ -196,9 +286,11 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <span className="font-mono text-sm text-zinc-400">azizah.khairunnisa</span>
-          <div className="flex items-center gap-6">
-            <a href="#skills" className="text-sm text-zinc-400 hover:text-white transition-colors">Skills</a>
+          <div className="flex items-center gap-5">
+            <a href="#experience" className="text-sm text-zinc-400 hover:text-white transition-colors">Pengalaman</a>
+            <a href="#skills" className="text-sm text-zinc-400 hover:text-white transition-colors">Keahlian</a>
             <a href="#portfolio" className="text-sm text-zinc-400 hover:text-white transition-colors">Portfolio</a>
+            <a href="#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">Kontak</a>
             <a href="/admin" className="text-sm text-zinc-400 hover:text-white transition-colors">Admin</a>
           </div>
         </div>
@@ -217,7 +309,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-4 py-1.5 mb-8">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm text-violet-300 font-mono">Available for work</span>
+              <span className="text-sm text-violet-300 font-mono">Tersedia untuk pekerjaan baru</span>
             </div>
 
             <h1 className="text-6xl md:text-8xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent mb-4">
@@ -228,26 +320,42 @@ export default function Home() {
               Human Resources <span className="text-violet-400">&</span> Administration Enthusiast
             </p>
 
-            <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-              I am a Psychology graduate with a strong interest in Human Resources, administration,
-              and data management. I have experience in handling structured documentation,
-              coordinating team activities, and supporting training and research programs.
-              I am detail-oriented, adaptive, and committed to delivering organized and professional work.
+            <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Lulusan S1 Psikologi dengan ketertarikan pada bidang Human Resources dan administrasi.
+              Berpengalaman dalam pengelolaan data, administrasi sekretariat, pelatihan, serta koordinasi
+              kegiatan berbasis tim. Detail-oriented, adaptif, dan berkomitmen memberikan hasil kerja yang
+              rapi, efisien, dan profesional.
             </p>
+
+            {/* Contact info */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-10 text-sm text-zinc-500">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-violet-400" />
+                Banjarmasin Utara, Kalimantan Selatan
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-violet-400" />
+                azhkrn@gmail.com
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-violet-400" />
+                +62 896 0448 8288
+              </span>
+            </div>
 
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <button
                 onClick={scrollToPortfolio}
                 className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25"
               >
-                View Portfolio Files
+                Lihat Portfolio
                 <ChevronRight className="w-4 h-4" />
               </button>
               <a
-                href="#skills"
+                href="#experience"
                 className="flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors"
               >
-                My Skills
+                Pengalaman Saya
               </a>
             </div>
           </motion.div>
@@ -257,15 +365,16 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-20 grid grid-cols-3 gap-6 max-w-lg mx-auto"
+            className="mt-20 grid grid-cols-4 gap-6 max-w-lg mx-auto"
           >
             {[
-              { value: "3+", label: "Years Experience" },
-              { value: "4+", label: "Programs Led" },
-              { value: "6", label: "Core Competencies" },
+              { value: "3.59", label: "IPK" },
+              { value: "10+", label: "Peserta Dilatih" },
+              { value: "PKM", label: "Lolos Nasional" },
+              { value: "2025", label: "Lulus" },
             ].map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-3xl font-bold text-white">{s.value}</div>
+                <div className="text-2xl font-bold text-white">{s.value}</div>
                 <div className="text-xs text-zinc-500 mt-1">{s.label}</div>
               </div>
             ))}
@@ -277,22 +386,137 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Experience */}
+      <section id="experience" className="py-24 px-6 bg-zinc-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <Briefcase className="w-5 h-5 text-violet-400" />
+              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Pengalaman Kerja & Magang</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white">Riwayat Pengalaman</h2>
+          </motion.div>
+
+          <div className="space-y-6">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={exp.org}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`rounded-2xl border ${exp.color} bg-gradient-to-br ${exp.bg} p-6`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Building2 className={`w-4 h-4 ${exp.accent}`} />
+                      <span className={`font-semibold text-lg text-white`}>{exp.org}</span>
+                    </div>
+                    <p className={`text-sm font-medium ${exp.accent}`}>{exp.role}</p>
+                    {exp.subtitle && (
+                      <p className="text-xs text-zinc-500 mt-1 italic">{exp.subtitle}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
+                    <span className="text-sm font-mono text-zinc-400">{exp.year}</span>
+                  </div>
+                </div>
+                <ul className="space-y-2">
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-zinc-400">
+                      <span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${exp.accent.replace("text-", "bg-")}`} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research & Projects */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <FlaskConical className="w-5 h-5 text-amber-400" />
+              <span className="text-sm font-mono text-amber-400 uppercase tracking-widest">Penelitian & Proyek</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white">Karya & Penelitian</h2>
+          </motion.div>
+
+          <div className="space-y-6">
+            {research.map((r, i) => (
+              <motion.div
+                key={r.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`rounded-2xl border ${r.color} bg-gradient-to-br ${r.bg} p-6`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className="font-bold text-white text-lg">{r.title}</span>
+                      {r.badge && (
+                        <span className={`text-xs px-2.5 py-0.5 rounded-full border ${r.color} ${r.accent} font-medium`}>
+                          {r.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-sm font-medium ${r.accent} mb-1`}>{r.role}</p>
+                    <p className="text-xs text-zinc-500 italic leading-relaxed">{r.subtitle}</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
+                    <span className="text-sm font-mono text-zinc-400">{r.year}</span>
+                  </div>
+                </div>
+                <ul className="space-y-2">
+                  {r.bullets.map((b, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-zinc-400">
+                      <span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${r.accent.replace("text-", "bg-")}`} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Skills */}
-      <section id="skills" className="py-24 px-6">
+      <section id="skills" className="py-24 px-6 bg-zinc-900/30">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="mb-14"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Core Expertise</h2>
-            <p className="text-zinc-500 max-w-lg mx-auto">
-              Professional competencies developed through hands-on experience in HR, administration, research, and program coordination.
-            </p>
+            <div className="flex items-center gap-3 mb-3">
+              <Star className="w-5 h-5 text-violet-400" />
+              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Kompetensi</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white">Keahlian Utama</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             {skills.map((skill, i) => (
               <motion.div
                 key={skill.title}
@@ -314,7 +538,6 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* Bento wide card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -324,13 +547,20 @@ export default function Home() {
             >
               <div className="flex items-start gap-4">
                 <div className="p-2 rounded-xl bg-zinc-900/50">
-                  <Star className="w-6 h-6 text-amber-400" />
+                  <Users className="w-6 h-6 text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Event & Program Coordination</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
-                    Experienced in planning, organizing, and executing programs and events from start to finish — coordinating logistics, managing participants, and ensuring smooth delivery of activities in professional and educational settings.
+                  <h3 className="font-semibold text-white mb-2">Koordinasi Tim & Kepanitiaan</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+                    Berpengalaman merencanakan, mengorganisir, dan melaksanakan program dan acara dari awal hingga akhir — mengelola logistik, peserta, dan memastikan kelancaran kegiatan di lingkungan profesional dan akademik.
                   </p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Leadership", "Public Speaking", "People Handling", "Empati Tinggi", "Detail-Oriented", "Adaptif"].map((tag) => (
+                      <span key={tag} className="text-xs px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -338,70 +568,155 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Project */}
+      {/* Education */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <GraduationCap className="w-5 h-5 text-blue-400" />
+              <span className="text-sm font-mono text-blue-400 uppercase tracking-widest">Pendidikan</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white">Riwayat Pendidikan</h2>
+          </motion.div>
+
+          <div className="space-y-4">
+            {[
+              {
+                school: "Universitas Lambung Mangkurat",
+                major: "S1 Psikologi",
+                detail: "IPK 3.59",
+                period: "2022 – 2026",
+                color: "border-blue-500/30",
+                accent: "text-blue-400",
+                bg: "from-blue-500/10 to-transparent",
+              },
+              {
+                school: "MAN 1 Banjarmasin",
+                major: "Jurusan MIPA",
+                detail: "Nilai Rata-Rata 91.08/100",
+                period: "2019 – 2022",
+                color: "border-indigo-500/30",
+                accent: "text-indigo-400",
+                bg: "from-indigo-500/10 to-transparent",
+              },
+            ].map((edu, i) => (
+              <motion.div
+                key={edu.school}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`rounded-2xl border ${edu.color} bg-gradient-to-br ${edu.bg} p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-2.5 rounded-xl bg-zinc-900/60 shrink-0">
+                    <GraduationCap className={`w-5 h-5 ${edu.accent}`} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white text-lg">{edu.school}</h3>
+                    <p className={`text-sm font-medium ${edu.accent}`}>{edu.major}</p>
+                    <p className="text-sm text-zinc-500 mt-0.5">{edu.detail}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0 pl-12 sm:pl-0">
+                  <CalendarDays className="w-3.5 h-3.5 text-zinc-500" />
+                  <span className="text-sm font-mono text-zinc-400">{edu.period}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Organizations & Committees */}
       <section className="py-24 px-6 bg-zinc-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <Users className="w-5 h-5 text-emerald-400" />
+              <span className="text-sm font-mono text-emerald-400 uppercase tracking-widest">Organisasi & Kepanitiaan</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white">Keterlibatan Organisasi</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Organizations */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-4">Organisasi</h3>
+              <div className="space-y-3">
+                {organizations.map((org, i) => (
+                  <div key={i} className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 transition-colors">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="font-semibold text-white text-sm">{org.name}</p>
+                        <p className="text-xs text-emerald-400 mt-0.5">{org.role}</p>
+                      </div>
+                      <span className="text-xs font-mono text-zinc-500 shrink-0">{org.period}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Committees */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-4">Kepanitiaan</h3>
+              <div className="space-y-3">
+                {committees.map((c, i) => (
+                  <div key={i} className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 transition-colors">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="font-semibold text-white text-sm leading-snug">{c.name}</p>
+                        <p className="text-xs text-violet-400 mt-0.5">{c.role}</p>
+                      </div>
+                      <span className="text-xs font-mono text-zinc-500 shrink-0">{c.year}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Files */}
+      <section id="portfolio" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 rounded-full px-4 py-1.5 mb-4">
-              <Star className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-sm text-amber-300">Featured Project</span>
+            <div className="flex items-center gap-3 mb-3">
+              <Award className="w-5 h-5 text-violet-400" />
+              <span className="text-sm font-mono text-violet-400 uppercase tracking-widest">Dokumen</span>
             </div>
-            <h2 className="text-4xl font-bold text-white">Highlight Work</h2>
+            <h2 className="text-4xl font-bold text-white mb-3">Portfolio Files</h2>
+            <p className="text-zinc-500">CV, laporan, dan dokumen profesional yang bisa diunduh.</p>
           </motion.div>
 
-          {/* Static featured project */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-zinc-900 p-8 mb-6"
-          >
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-                  <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">2025</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  Asset & Building Management Report 2025
-                </h3>
-                <p className="text-zinc-400 leading-relaxed mb-6">
-                  Structured report covering asset management, maintenance planning, and cost
-                  efficiency, demonstrating strong documentation, data organization, and reporting
-                  skills.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Documentation", "Data Organization", "Reporting", "Cost Efficiency"].map((tag) => (
-                    <span key={tag} className="text-xs px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4 md:w-48 shrink-0">
-                {[
-                  { v: "100%", l: "Documented" },
-                  { v: "3+", l: "Programs" },
-                  { v: "PKM", l: "Research" },
-                  { v: "2025", l: "Year" },
-                ].map((s) => (
-                  <div key={s.l} className="bg-zinc-800/60 rounded-xl p-4 text-center border border-zinc-700/50">
-                    <div className="text-2xl font-bold text-amber-400">{s.v}</div>
-                    <div className="text-xs text-zinc-500 mt-1">{s.l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Dynamic featured from DB */}
           {featured.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {featured.map((file) => (
                 <motion.div
                   key={file.id}
@@ -414,6 +729,10 @@ export default function Home() {
                     <FileIcon type={file.file_type} />
                   </div>
                   <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      <span className="text-xs text-amber-400 font-medium">Unggulan</span>
+                    </div>
                     <h4 className="font-semibold text-white truncate">{file.title}</h4>
                     <p className="text-sm text-zinc-500 truncate">{file.description}</p>
                   </div>
@@ -427,26 +746,11 @@ export default function Home() {
               ))}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Portfolio Files */}
-      <section id="portfolio" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold text-white mb-4">Portfolio Files</h2>
-            <p className="text-zinc-500">Browse and download my work samples, reports, and professional documentation.</p>
-          </motion.div>
 
           {files.length === 0 ? (
             <div className="text-center py-24 text-zinc-600">
               <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>No files uploaded yet. Check back soon.</p>
+              <p>Belum ada file yang diunggah. Nantikan pembaruan.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -497,7 +801,7 @@ export default function Home() {
                       className="flex items-center gap-1.5 text-xs text-white bg-violet-600 hover:bg-violet-500 px-3 py-1.5 rounded-lg transition-colors"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      Download
+                      Unduh
                     </button>
                   </div>
                 </motion.div>
@@ -507,9 +811,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-800 py-8 px-6 text-center text-zinc-600 text-sm">
-        <p>Built with care · {new Date().getFullYear()}</p>
+      {/* Contact / Footer */}
+      <section id="contact" className="py-24 px-6 bg-zinc-900/30">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm text-violet-300 font-mono">Terbuka untuk Peluang Baru</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">Hubungi Saya</h2>
+            <p className="text-zinc-500 mb-10">
+              Tertarik untuk berkolaborasi atau memiliki peluang yang sesuai? Jangan ragu untuk menghubungi saya.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="mailto:azhkrn@gmail.com"
+                className="flex items-center gap-2.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-violet-500/25 w-full sm:w-auto justify-center"
+              >
+                <Mail className="w-4 h-4" />
+                azhkrn@gmail.com
+              </a>
+              <a
+                href="tel:+6289604488288"
+                className="flex items-center gap-2.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold py-3 px-8 rounded-xl transition-colors w-full sm:w-auto justify-center"
+              >
+                <Phone className="w-4 h-4" />
+                +62 896 0448 8288
+              </a>
+            </div>
+
+            <div className="mt-8 flex items-center justify-center gap-1.5 text-zinc-600 text-sm">
+              <MapPin className="w-3.5 h-3.5" />
+              Banjarmasin Utara, Kalimantan Selatan
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <footer className="border-t border-zinc-800 py-6 px-6 text-center text-zinc-600 text-sm">
+        <p>© {new Date().getFullYear()} Azizah Khairunnisa · All rights reserved</p>
       </footer>
 
       {preview && <PreviewModal file={preview} onClose={() => setPreview(null)} />}
