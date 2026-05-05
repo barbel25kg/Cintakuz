@@ -4,42 +4,42 @@ import { fetchFiles, trackDownload, type PortfolioFile } from "@/lib/api";
 import { useState } from "react";
 import {
   FileText, Image, Download, Eye, Star, ChevronRight,
-  Database, Building2, DollarSign, Wrench, BarChart3, X,
+  FolderOpen, BarChart3, BookOpen, Search, MessageSquare, CalendarCheck, X,
 } from "lucide-react";
 
 const skills = [
   {
-    icon: Database,
-    title: "Asset Management System",
-    desc: "Structured tracking and lifecycle management for organizational assets with 96%+ efficiency.",
+    icon: FolderOpen,
+    title: "Administrative & Document Management",
+    desc: "Skilled in structured documentation, record keeping, and maintaining organized administrative systems for efficient operations.",
     color: "from-violet-500/20 to-purple-500/10",
     border: "border-violet-500/30",
   },
   {
-    icon: Building2,
-    title: "Building & Facility Management",
-    desc: "Comprehensive oversight of facilities including maintenance scheduling and compliance monitoring.",
+    icon: BarChart3,
+    title: "Data Processing & Reporting",
+    desc: "Experienced in compiling, processing, and presenting data in clear, accurate reports that support informed decision-making.",
     color: "from-blue-500/20 to-cyan-500/10",
     border: "border-blue-500/30",
   },
   {
-    icon: DollarSign,
-    title: "Budgeting & Cost Efficiency",
-    desc: "Strategic budget planning and cost analysis ensuring optimal resource allocation.",
+    icon: BookOpen,
+    title: "Training & Program Development",
+    desc: "Capable of designing and facilitating training programs that improve team performance and professional development.",
     color: "from-emerald-500/20 to-green-500/10",
     border: "border-emerald-500/30",
   },
   {
-    icon: Wrench,
-    title: "Maintenance Planning",
-    desc: "Proactive preventive maintenance schedules reducing downtime and extending asset lifespan.",
+    icon: Search,
+    title: "Research & Analysis",
+    desc: "Proficient in conducting systematic research, analyzing findings, and drawing evidence-based conclusions.",
     color: "from-orange-500/20 to-amber-500/10",
     border: "border-orange-500/30",
   },
   {
-    icon: BarChart3,
-    title: "Data Reporting & Documentation",
-    desc: "Detailed operational reports and documentation for decision-making and compliance.",
+    icon: MessageSquare,
+    title: "Interpersonal Communication",
+    desc: "Strong communicator with the ability to build rapport, convey information clearly, and collaborate effectively across teams.",
     color: "from-rose-500/20 to-pink-500/10",
     border: "border-rose-500/30",
   },
@@ -144,7 +144,7 @@ export default function Home() {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="font-mono text-sm text-zinc-400">portfolio.dev</span>
+          <span className="font-mono text-sm text-zinc-400">azizah.khairunnisa</span>
           <div className="flex items-center gap-6">
             <a href="#skills" className="text-sm text-zinc-400 hover:text-white transition-colors">Skills</a>
             <a href="#portfolio" className="text-sm text-zinc-400 hover:text-white transition-colors">Portfolio</a>
@@ -170,16 +170,18 @@ export default function Home() {
             </div>
 
             <h1 className="text-6xl md:text-8xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent mb-4">
-              Alex Rivera
+              Azizah Khairunnisa
             </h1>
 
             <p className="text-xl md:text-2xl text-zinc-400 font-mono mb-6">
-              Fullstack Developer <span className="text-violet-400">/</span> System Builder
+              Human Resources <span className="text-violet-400">&</span> Administration Enthusiast
             </p>
 
             <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-              I build robust asset management systems, facility solutions, and data-driven reporting
-              platforms that drive efficiency and real-world results.
+              I am a Psychology graduate with a strong interest in Human Resources, administration,
+              and data management. I have experience in handling structured documentation,
+              coordinating team activities, and supporting training and research programs.
+              I am detail-oriented, adaptive, and committed to delivering organized and professional work.
             </p>
 
             <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -207,9 +209,9 @@ export default function Home() {
             className="mt-20 grid grid-cols-3 gap-6 max-w-lg mx-auto"
           >
             {[
-              { value: "142+", label: "Assets Managed" },
-              { value: "96%", label: "Budget Efficiency" },
-              { value: "5+", label: "Core Specialties" },
+              { value: "3+", label: "Years Experience" },
+              { value: "4+", label: "Programs Led" },
+              { value: "6", label: "Core Competencies" },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <div className="text-3xl font-bold text-white">{s.value}</div>
@@ -235,7 +237,7 @@ export default function Home() {
           >
             <h2 className="text-4xl font-bold text-white mb-4">Core Expertise</h2>
             <p className="text-zinc-500 max-w-lg mx-auto">
-              Specialized skills built through hands-on system development and real-world implementation.
+              Professional competencies developed through hands-on experience in HR, administration, research, and program coordination.
             </p>
           </motion.div>
 
@@ -274,9 +276,9 @@ export default function Home() {
                   <Star className="w-6 h-6 text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">System Architecture</h3>
+                  <h3 className="font-semibold text-white mb-1">Event & Program Coordination</h3>
                   <p className="text-sm text-zinc-400 leading-relaxed">
-                    End-to-end design and implementation of enterprise management systems — from database schema to reporting dashboards — with a focus on scalability, maintainability, and measurable ROI.
+                    Experienced in planning, organizing, and executing programs and events from start to finish — coordinating logistics, managing participants, and ensuring smooth delivery of activities in professional and educational settings.
                   </p>
                 </div>
               </div>
@@ -315,16 +317,15 @@ export default function Home() {
                   <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">2025</span>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">
-                  Asset & Building Management System Report 2025
+                  Asset & Building Management Report 2025
                 </h3>
                 <p className="text-zinc-400 leading-relaxed mb-6">
-                  Developed structured asset tracking, maintenance planning, and cost efficiency
-                  reporting system with 142 assets managed and 96% budget efficiency. Implemented
-                  comprehensive lifecycle monitoring, preventive maintenance schedules, and
-                  automated reporting pipelines.
+                  Structured report covering asset management, maintenance planning, and cost
+                  efficiency, demonstrating strong documentation, data organization, and reporting
+                  skills.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Asset Tracking", "Maintenance Planning", "Cost Analysis", "Data Reporting"].map((tag) => (
+                  {["Documentation", "Data Organization", "Reporting", "Cost Efficiency"].map((tag) => (
                     <span key={tag} className="text-xs px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
                       {tag}
                     </span>
@@ -333,10 +334,10 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-4 md:w-48 shrink-0">
                 {[
-                  { v: "142", l: "Assets" },
-                  { v: "96%", l: "Efficiency" },
                   { v: "100%", l: "Documented" },
-                  { v: "12mo", l: "Duration" },
+                  { v: "3+", l: "Programs" },
+                  { v: "PKM", l: "Research" },
+                  { v: "2025", l: "Year" },
                 ].map((s) => (
                   <div key={s.l} className="bg-zinc-800/60 rounded-xl p-4 text-center border border-zinc-700/50">
                     <div className="text-2xl font-bold text-amber-400">{s.v}</div>
@@ -388,7 +389,7 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-white mb-4">Portfolio Files</h2>
-            <p className="text-zinc-500">Browse and download my work samples and documentation.</p>
+            <p className="text-zinc-500">Browse and download my work samples, reports, and professional documentation.</p>
           </motion.div>
 
           {files.length === 0 ? (
