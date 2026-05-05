@@ -50,6 +50,11 @@ function FileTypeBadge({ type }: { type: PortfolioFile["file_type"] }) {
     pdf: { label: "PDF", color: "bg-red-500/20 text-red-400 border-red-500/30" },
     doc: { label: "DOC", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
     image: { label: "IMG", color: "bg-green-500/20 text-green-400 border-green-500/30" },
+    spreadsheet: { label: "XLS", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
+    presentation: { label: "PPT", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
+    video: { label: "VID", color: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
+    audio: { label: "AUD", color: "bg-pink-500/20 text-pink-400 border-pink-500/30" },
+    archive: { label: "ZIP", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
     other: { label: "FILE", color: "bg-zinc-500/20 text-zinc-400 border-zinc-500/30" },
   };
   const { label, color } = map[type] ?? map.other;

@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabase.js";
 import { requireAdmin } from "../lib/auth.js";
 
 const router = Router();
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 50 * 1024 * 1024 } });
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 100 * 1024 * 1024 } });
 
 const BUCKET = "portfolio-files";
 const TABLE = "portfolio_files";
@@ -86,10 +86,28 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
 
   const { data: urlData } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
 
-  const mimeToType = (mime: string): string => {
+  const mimeToType = (mime: string, ext: string): string => {
     if (mime === "application/pdf") return "pdf";
-    if (mime.includes("word") || mime.includes("document")) return "doc";
+    if (
+      mime.includes("word") ||
+      mime.includes("officedocument.wordprocessingml") ||
+      ext === "doc" || ext === "docx"
+    ) return "doc";
+    if (
+      mime.includes("sheet") ||
+      mime.includes("excel") ||
+      mime.includes("spreadsheet") ||
+      ext === "xls" || ext === "xlsx" || ext === "csv"
+    ) return "spreadsheet";
+    if (
+      mime.includes("presentation") ||
+      mime.includes("powerpoint") ||
+      ext === "ppt" || ext === "pptx"
+    ) return "presentation";
     if (mime.startsWith("image/")) return "image";
+    if (mime.startsWith("video/")) return "video";
+    if (mime.startsWith("audio/")) return "audio";
+    if (mime.includes("zip") || mime.includes("rar") || mime.includes("7z") || mime.includes("tar")) return "archive";
     return "other";
   };
 
@@ -99,7 +117,7 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
       title,
       description: description ?? "",
       file_url: urlData.publicUrl,
-      file_type: mimeToType(file.mimetype),
+      file_type: mimeToType(file.mimetype, ext),
       featured: featured === "true",
       download_count: 0,
     })
@@ -108,6 +126,14 @@ router.post("/", requireAdmin, upload.single("file"), async (req, res) => {
 
   if (dbError) {
     req.log.error(dbError);
+    // Clean up uploaded file if DB save fails
+    await supabase.storage.from(BUCKET).remove([fileName]);
+    if (dbError.code === "PGRST205" || dbError.code === "42P01") {
+      res.status(500).json({
+        error: "Database table not set up yet. Please run the setup SQL in your Supabase dashboard.",
+      });
+      return;
+    }
     res.status(500).json({ error: "Failed to save file metadata" });
     return;
   }
