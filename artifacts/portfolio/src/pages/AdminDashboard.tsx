@@ -2,28 +2,76 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  fetchFiles, uploadFile, updateFile, deleteFile, logout, isLoggedIn, type PortfolioFile,
+  fetchFiles,
+  uploadFile,
+  updateFile,
+  deleteFile,
+  logout,
+  isLoggedIn,
+  type PortfolioFile,
 } from "@/lib/api";
 import { useLocation } from "wouter";
 import {
-  Upload, Trash2, Pencil, Star, StarOff, LogOut, FileText, Image,
-  Download, Check, X, Plus, ShieldCheck,
+  Upload,
+  Trash2,
+  Pencil,
+  Star,
+  StarOff,
+  LogOut,
+  FileText,
+  Image,
+  Download,
+  Check,
+  X,
+  Plus,
+  ShieldCheck,
 } from "lucide-react";
 
 function FileTypeBadge({ type }: { type: PortfolioFile["file_type"] }) {
   const map: Record<string, { label: string; color: string }> = {
-    pdf: { label: "PDF", color: "bg-red-500/20 text-red-400 border-red-500/30" },
-    doc: { label: "DOC", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-    image: { label: "IMG", color: "bg-green-500/20 text-green-400 border-green-500/30" },
-    spreadsheet: { label: "XLS", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
-    presentation: { label: "PPT", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
-    video: { label: "VID", color: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
-    audio: { label: "AUD", color: "bg-pink-500/20 text-pink-400 border-pink-500/30" },
-    archive: { label: "ZIP", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
-    other: { label: "FILE", color: "bg-zinc-500/20 text-zinc-400 border-zinc-500/30" },
+    pdf: {
+      label: "PDF",
+      color: "bg-red-500/20 text-red-400 border-red-500/30",
+    },
+    doc: {
+      label: "DOC",
+      color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    },
+    image: {
+      label: "IMG",
+      color: "bg-green-500/20 text-green-400 border-green-500/30",
+    },
+    spreadsheet: {
+      label: "XLS",
+      color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    },
+    presentation: {
+      label: "PPT",
+      color: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+    },
+    video: {
+      label: "VID",
+      color: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+    },
+    audio: {
+      label: "AUD",
+      color: "bg-pink-500/20 text-pink-400 border-pink-500/30",
+    },
+    archive: {
+      label: "ZIP",
+      color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+    },
+    other: {
+      label: "FILE",
+      color: "bg-zinc-500/20 text-zinc-400 border-zinc-500/30",
+    },
   };
   const { label, color } = map[type] ?? map.other;
-  return <span className={`text-xs font-mono px-2 py-0.5 rounded border ${color}`}>{label}</span>;
+  return (
+    <span className={`text-xs font-mono px-2 py-0.5 rounded border ${color}`}>
+      {label}
+    </span>
+  );
 }
 
 interface EditState {
@@ -42,7 +90,10 @@ export default function AdminDashboard() {
     return null;
   }
 
-  const { data: files = [], isLoading } = useQuery({ queryKey: ["files"], queryFn: fetchFiles });
+  const { data: files = [], isLoading } = useQuery({
+    queryKey: ["files"],
+    queryFn: fetchFiles,
+  });
 
   const [uploadForm, setUploadForm] = useState({
     title: "",
@@ -62,8 +113,13 @@ export default function AdminDashboard() {
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: Parameters<typeof updateFile>[1] }) =>
-      updateFile(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: string;
+      data: Parameters<typeof updateFile>[1];
+    }) => updateFile(id, data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["files"] });
       setEditState(null);
@@ -100,14 +156,23 @@ export default function AdminDashboard() {
   };
 
   const startEdit = (file: PortfolioFile) => {
-    setEditState({ id: file.id, title: file.title, description: file.description, featured: file.featured });
+    setEditState({
+      id: file.id,
+      title: file.title,
+      description: file.description,
+      featured: file.featured,
+    });
   };
 
   const saveEdit = () => {
     if (!editState) return;
     updateMutation.mutate({
       id: editState.id,
-      data: { title: editState.title, description: editState.description, featured: editState.featured },
+      data: {
+        title: editState.title,
+        description: editState.description,
+        featured: editState.featured,
+      },
     });
   };
 
@@ -121,7 +186,10 @@ export default function AdminDashboard() {
             <span className="font-semibold text-white">Admin Dashboard</span>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/" className="text-sm text-zinc-400 hover:text-white transition-colors">
+            <a
+              href="/"
+              className="text-sm text-zinc-400 hover:text-white transition-colors"
+            >
               View Portfolio
             </a>
             <button
@@ -140,11 +208,23 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
             { label: "Total Files", value: files.length },
-            { label: "Featured", value: files.filter((f) => f.featured).length },
-            { label: "Total Downloads", value: files.reduce((s, f) => s + f.download_count, 0) },
-            { label: "File Types", value: new Set(files.map((f) => f.file_type)).size },
+            {
+              label: "Featured",
+              value: files.filter((f) => f.featured).length,
+            },
+            {
+              label: "Total Downloads",
+              value: files.reduce((s, f) => s + f.download_count, 0),
+            },
+            {
+              label: "File Types",
+              value: new Set(files.map((f) => f.file_type)).size,
+            },
           ].map((s) => (
-            <div key={s.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div
+              key={s.label}
+              className="bg-zinc-900 border border-zinc-800 rounded-xl p-4"
+            >
               <div className="text-2xl font-bold text-white">{s.value}</div>
               <div className="text-xs text-zinc-500 mt-1">{s.label}</div>
             </div>
@@ -177,22 +257,30 @@ export default function AdminDashboard() {
             <form onSubmit={handleUpload} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm text-zinc-400 block mb-1.5">Title *</label>
+                  <label className="text-sm text-zinc-400 block mb-1.5">
+                    Title *
+                  </label>
                   <input
                     type="text"
                     value={uploadForm.title}
-                    onChange={(e) => setUploadForm((f) => ({ ...f, title: e.target.value }))}
+                    onChange={(e) =>
+                      setUploadForm((f) => ({ ...f, title: e.target.value }))
+                    }
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-2.5 px-4 text-white placeholder-zinc-600 focus:outline-none focus:border-violet-500 transition-colors"
                     placeholder="File title"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-sm text-zinc-400 block mb-1.5">File *</label>
+                  <label className="text-sm text-zinc-400 block mb-1.5">
+                    File *
+                  </label>
                   <input
                     ref={fileInputRef}
                     type="file"
-                    onChange={(e) => setSelectedFile(e.target.files?.[0] ?? null)}
+                    onChange={(e) =>
+                      setSelectedFile(e.target.files?.[0] ?? null)
+                    }
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-2.5 px-4 text-zinc-400 focus:outline-none focus:border-violet-500 transition-colors file:mr-3 file:bg-zinc-700 file:border-0 file:text-zinc-300 file:rounded-lg file:px-3 file:py-1 file:text-xs"
                     accept="*/*"
                     required
@@ -200,10 +288,17 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <div>
-                <label className="text-sm text-zinc-400 block mb-1.5">Description</label>
+                <label className="text-sm text-zinc-400 block mb-1.5">
+                  Description
+                </label>
                 <textarea
                   value={uploadForm.description}
-                  onChange={(e) => setUploadForm((f) => ({ ...f, description: e.target.value }))}
+                  onChange={(e) =>
+                    setUploadForm((f) => ({
+                      ...f,
+                      description: e.target.value,
+                    }))
+                  }
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-2.5 px-4 text-white placeholder-zinc-600 focus:outline-none focus:border-violet-500 transition-colors resize-none"
                   placeholder="Brief description of this file"
                   rows={2}
@@ -214,10 +309,15 @@ export default function AdminDashboard() {
                   type="checkbox"
                   id="featured"
                   checked={uploadForm.featured}
-                  onChange={(e) => setUploadForm((f) => ({ ...f, featured: e.target.checked }))}
+                  onChange={(e) =>
+                    setUploadForm((f) => ({ ...f, featured: e.target.checked }))
+                  }
                   className="w-4 h-4 rounded accent-violet-500"
                 />
-                <label htmlFor="featured" className="text-sm text-zinc-400 cursor-pointer">
+                <label
+                  htmlFor="featured"
+                  className="text-sm text-zinc-400 cursor-pointer"
+                >
                   Mark as Featured Project
                 </label>
               </div>
@@ -269,12 +369,20 @@ export default function AdminDashboard() {
                   <div className="space-y-3">
                     <input
                       value={editState.title}
-                      onChange={(e) => setEditState((s) => s && { ...s, title: e.target.value })}
+                      onChange={(e) =>
+                        setEditState(
+                          (s) => s && { ...s, title: e.target.value },
+                        )
+                      }
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-violet-500"
                     />
                     <textarea
                       value={editState.description}
-                      onChange={(e) => setEditState((s) => s && { ...s, description: e.target.value })}
+                      onChange={(e) =>
+                        setEditState(
+                          (s) => s && { ...s, description: e.target.value },
+                        )
+                      }
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-violet-500 resize-none"
                       rows={2}
                     />
@@ -283,16 +391,31 @@ export default function AdminDashboard() {
                         type="checkbox"
                         id={`feat-${file.id}`}
                         checked={editState.featured}
-                        onChange={(e) => setEditState((s) => s && { ...s, featured: e.target.checked })}
+                        onChange={(e) =>
+                          setEditState(
+                            (s) => s && { ...s, featured: e.target.checked },
+                          )
+                        }
                         className="w-4 h-4 accent-violet-500"
                       />
-                      <label htmlFor={`feat-${file.id}`} className="text-sm text-zinc-400">Featured</label>
+                      <label
+                        htmlFor={`feat-${file.id}`}
+                        className="text-sm text-zinc-400"
+                      >
+                        Featured
+                      </label>
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={saveEdit} className="flex items-center gap-1.5 bg-green-600 hover:bg-green-500 text-white text-sm py-1.5 px-4 rounded-lg">
+                      <button
+                        onClick={saveEdit}
+                        className="flex items-center gap-1.5 bg-green-600 hover:bg-green-500 text-white text-sm py-1.5 px-4 rounded-lg"
+                      >
                         <Check className="w-3.5 h-3.5" /> Save
                       </button>
-                      <button onClick={() => setEditState(null)} className="flex items-center gap-1.5 border border-zinc-700 text-zinc-400 hover:text-white text-sm py-1.5 px-4 rounded-lg">
+                      <button
+                        onClick={() => setEditState(null)}
+                        className="flex items-center gap-1.5 border border-zinc-700 text-zinc-400 hover:text-white text-sm py-1.5 px-4 rounded-lg"
+                      >
                         <X className="w-3.5 h-3.5" /> Cancel
                       </button>
                     </div>
@@ -308,12 +431,18 @@ export default function AdminDashboard() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-medium text-white truncate">{file.title}</span>
+                        <span className="font-medium text-white truncate">
+                          {file.title}
+                        </span>
                         <FileTypeBadge type={file.file_type} />
-                        {file.featured && <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />}
+                        {file.featured && (
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
+                        )}
                       </div>
                       {file.description && (
-                        <p className="text-sm text-zinc-500 truncate mt-0.5">{file.description}</p>
+                        <p className="text-sm text-zinc-500 truncate mt-0.5">
+                          {file.description}
+                        </p>
                       )}
                       <div className="flex items-center gap-3 mt-1">
                         <span className="text-xs text-zinc-600 flex items-center gap-1">
@@ -336,7 +465,11 @@ export default function AdminDashboard() {
                         className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-500 hover:text-amber-400 transition-colors"
                         title={file.featured ? "Unfeature" : "Feature"}
                       >
-                        {file.featured ? <StarOff className="w-4 h-4" /> : <Star className="w-4 h-4" />}
+                        {file.featured ? (
+                          <StarOff className="w-4 h-4" />
+                        ) : (
+                          <Star className="w-4 h-4" />
+                        )}
                       </button>
                       <button
                         onClick={() => startEdit(file)}
@@ -346,7 +479,8 @@ export default function AdminDashboard() {
                       </button>
                       <button
                         onClick={() => {
-                          if (confirm(`Delete "${file.title}"?`)) deleteMutation.mutate(file.id);
+                          if (confirm(`Delete "${file.title}"?`))
+                            deleteMutation.mutate(file.id);
                         }}
                         className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-500 hover:text-red-400 transition-colors"
                       >

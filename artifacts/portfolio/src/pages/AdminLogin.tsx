@@ -39,13 +39,17 @@ export default function AdminLogin() {
             <ShieldCheck className="w-8 h-8 text-violet-400" />
           </div>
           <h1 className="text-2xl font-bold text-white">Admin Access</h1>
-          <p className="text-zinc-500 text-sm mt-1">Restricted — authorized personnel only</p>
+          <p className="text-zinc-500 text-sm mt-1">
+            Restricted — authorized personnel only
+          </p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-sm text-zinc-400 block mb-1.5">Username</label>
+              <label className="text-sm text-zinc-400 block mb-1.5">
+                Username
+              </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
@@ -60,7 +64,9 @@ export default function AdminLogin() {
               </div>
             </div>
             <div>
-              <label className="text-sm text-zinc-400 block mb-1.5">Password</label>
+              <label className="text-sm text-zinc-400 block mb-1.5">
+                Password
+              </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
@@ -77,7 +83,11 @@ export default function AdminLogin() {
                   onClick={() => setShowPw((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
                 >
-                  {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPw ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -99,7 +109,10 @@ export default function AdminLogin() {
         </div>
 
         <div className="text-center mt-6">
-          <a href="/" className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors">
+          <a
+            href="/"
+            className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors"
+          >
             ← Back to Portfolio
           </a>
         </div>

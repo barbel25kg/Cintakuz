@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Netlify generated function bundle (built at deploy time)
+netlify/functions/
